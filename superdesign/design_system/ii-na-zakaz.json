@@ -1,0 +1,99 @@
+{
+  "name": "ИИ на заказ — дизайн-система (снята с npopko55-cmd.github.io/ii-na-zakaz, коммит 453d85f)",
+  "source": {
+    "screenshots": [
+      "research/13-lending-intensiva/референс-ii-na-zakaz/скрины/desktop-1440_00-first-screen.jpg",
+      "research/13-lending-intensiva/референс-ii-na-zakaz/скрины/desktop-1440_03-who.jpg",
+      "research/13-lending-intensiva/референс-ii-na-zakaz/скрины/desktop-1440_12-kit.jpg"
+    ],
+    "verified_against": "css/style.css (копия 453d85f) и research/13-lending-intensiva/ДИЗАЙН-СИСТЕМА-ИИ-на-заказ.md",
+    "extracted": "2026-10-15"
+  },
+  "colors": {
+    "primary": {
+      "pink": "#FF2A7F",
+      "button_gradient": "linear-gradient(95deg,#D80F5F 0%,#E0186A 52%,#D80F5F 100%)",
+      "pink_light": "#FF5A9C",
+      "pink_text_hint": "#FFB3D1",
+      "pink_glow": "0 0 22px rgba(255,42,127,.55), 0 10px 46px rgba(255,42,127,.32)"
+    },
+    "secondary": {
+      "section_black": ["#0A080C", "#100D12"],
+      "section_graphite": ["#121014", "#19161C"],
+      "section_aubergine": ["#120A14", "#190C1B"],
+      "section_wine": ["#170A11", "#24091A"],
+      "scene_base": "#0B090D",
+      "telegram_mock": { "bg": "#0E1621", "head": "#17212B", "in": "#182533", "out": "#2B5278", "accent": "#6AB2F2" }
+    },
+    "neutrals": {
+      "ink": "#0E0B12",
+      "page_bottom": "#060508",
+      "text": "#FFFFFF",
+      "text_2": "#D3CFD8",
+      "text_3": "#A9A3B0",
+      "line": "rgba(255,255,255,.12-.16)",
+      "glass_border": "rgba(255,255,255,.26)"
+    }
+  },
+  "typography": {
+    "fontFamilies": {
+      "display": "'Sofia Sans Extra Condensed', 'Oswald', 'Arial Narrow', sans-serif — 800/900, UPPERCASE, line-height .88–.94, letter-spacing -.005em, worn noise mask",
+      "text": "'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif — 400–800",
+      "logo": "'Rubik Wet Paint' (ИИ) + 'Rubik Spray Paint' (НА ЗАКАЗ), rotate(-3deg)"
+    },
+    "sizes": {
+      "fluid_rule": "clamp(min, a + b·vw, max), линейно от 390 px до 1440 px",
+      "h1_line_a": "45 → 77",
+      "h1_line_b_pink": "49 → 96",
+      "h1_line_c": "26 → 44",
+      "h2": "48 → 96",
+      "h2_xl": "64 → 140",
+      "lead": "19 → 28",
+      "body": "16 → 19",
+      "note": "14 → 16",
+      "button": "17 → 21, Inter 800 UPPERCASE, letter-spacing .035em",
+      "kicker_caps": "14–18, Inter 700 UPPERCASE, letter-spacing .14–.18em",
+      "big_number": "140 → 230"
+    },
+    "weights": { "display": 900, "text": 400, "text_strong": "700–800", "button": 800 }
+  },
+  "spacing": {
+    "container": "1280px",
+    "side_padding": "16 (390) → 52 (1440), max 80",
+    "section_padding_y": "56 (390) → 121 (1440), max 132",
+    "grid_gaps": "10–28"
+  },
+  "layout": {
+    "breakpoints": ["<=359", "<=767 phone", "768–1099/1199 tablet", ">=1100/1200 desktop", "phone max-height 740: CTA above scene"],
+    "rules": [
+      "каждый блок — сцена: градиент фона от цвета предыдущего блока (--pc), фактуры, пятна света",
+      "текст слева, картинка справа; на телефоне одна колонка",
+      "кнопка первого экрана видна без прокрутки на 390×844, 375×667, 320×568",
+      "на телефоне ряды карточек — горизонтальная лента со щелчком"
+    ]
+  },
+  "components": {
+    "buttons": {
+      "primary": "height 76→60, radius 12, gradient + pink glow, dark icon square #141016 52→42 radius 9 with white line icon, label Inter 800 UPPERCASE; hover brightness 1.08; active translateY(1px)",
+      "secondary": "height 56, radius 12, border rgba(255,255,255,.28), bg rgba(255,255,255,.04), Inter 700 UPPERCASE"
+    },
+    "glass": "linear-gradient(160deg, white 16% → 5% → 3%) over rgba(22,16,28,.42), border 1px rgba(255,255,255,.26), backdrop blur 14 saturate 1.2, inset top highlight, shadow 0 18px 40px rgba(0,0,0,.42), radius 14–18",
+    "fact_chip": "rgba(18,15,22,.6), border 20% white, blur 12, radius 12, check-circle icon 28",
+    "hint_pill": "pink bg, white Inter 700, radius 12 12 12 3, rotate(-1.5deg)",
+    "slot_card": "radius 18, gradient rgba(36,24,40,.78)→rgba(18,12,20,.9), pink radial glow, border 14%, inner dashed border 7%",
+    "accordion": "lines 14%, number Sofia 48 (40% → white), title Inter 700, chevron circle 28 rotates 180°, one open",
+    "regalia_chip": "glass, Sofia 900 44 number + 14 px caption",
+    "claim": "pink left bar 3px, Inter 800",
+    "dock": "fixed glass capsule radius 20 (desktop), full-width glass strip (phone), appears after first screen"
+  },
+  "effects": {
+    "radii": { "xs": "6–9", "s": 10, "m": 12, "r": 14, "l": 16, "xl": 18, "xxl": 20, "pill": 999 },
+    "textures": ["film grain overlay 5.5%", "concrete noise 7.5% screen", "grid 72px 4.5% white", "torn paper edge between blocks 18–40px", "pink floor light under hero objects"],
+    "motion": { "main_curve": "cubic-bezier(.2,.8,.2,1)", "spring": "cubic-bezier(.2,1.4,.4,1)", "rule": "once on reveal, transform/opacity only, static with prefers-reduced-motion" }
+  },
+  "imagery": {
+    "people": "semi-realistic digital painting, comic shading, pink rim light, cut out (transparent)",
+    "objects": "glossy 3D, dark graphite/black chrome + hot pink accents, 3/4 top view, transparent",
+    "backgrounds": "night loft / night city, pink neon, purple-black shadows; desktop 2000–2400px + phone 900×1613 WebP"
+  }
+}
