@@ -67,6 +67,7 @@ def hook_h1s(hooks: dict[str, list[str]]) -> str:  # тексты RU; узбек
 
 def typography(text: str, lang: str = "ru") -> str:
     text = re.sub(r"(\d)–(\d)", rf"\1{WJ}–{WJ}\2", text)
+    text = re.sub(r"[ ]+→", f"{NBSP}→", text)  # стрелка кнопки не уезжает на отдельную строку
     if lang == "uz":
         text = text.replace("AI-", "AI\u2011")  # неразрывный дефис: «AI-mutaxassis» не рвётся по строкам
         text = re.sub(r"[ ]+—", f"{NBSP}—", text)
