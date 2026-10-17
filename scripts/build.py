@@ -30,10 +30,7 @@ HEAD_HOOK_SCRIPT = (
     "if(k){document.documentElement.setAttribute('data-hook',k);}"
     # вариант первого экрана для выбора (?hero=b|c), без метки — вариант a
     "var h=(new URLSearchParams(location.search).get('hero')||'').toLowerCase();"
-    "if(h==='b'||h==='c'){document.documentElement.setAttribute('data-hero',h);}"
-    # набор пунктов первого экрана для выбора (?usp=b|c), без метки — набор a
-    "var u=(new URLSearchParams(location.search).get('usp')||'').toLowerCase();"
-    "if(u==='b'||u==='c'){document.documentElement.setAttribute('data-usp',u);}}catch(e){}})();</script>"
+    "if(h==='b'||h==='c'){document.documentElement.setAttribute('data-hero',h);}}catch(e){}})();</script>"
 )
 
 SHORT_WORDS = (

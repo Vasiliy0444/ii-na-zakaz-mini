@@ -21,7 +21,7 @@ from playwright.sync_api import sync_playwright
 ROOT = Path(__file__).resolve().parent.parent
 VIEWS = [(1440, 900), (1024, 768), (768, 1024), (390, 844), (375, 667), (320, 568)]
 HOOKS = ["", "compare", "math_a", "math_b", "now", "zero", "clients", "home"]
-HERO_VARIANTS = ["hero=b", "hero=c", "usp=b", "usp=c"]  # варианты первого экрана на выбор: кнопка тоже в первом экране
+HERO_VARIANTS = ["hero=b", "hero=c"]  # варианты первого экрана на выбор: кнопка тоже в первом экране
 
 
 def serve() -> tuple[str, socketserver.TCPServer]:

@@ -20,10 +20,10 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preload" href="assets/img/bg_hero_d.webp" as="image" media="(min-width: 768px)">
 <script id="hook-head">/* до отрисовки: какой заголовок показать по метке utm_content (логика = pickHook из js/hooks.js) */
-(function(){try{var w=(new URLSearchParams(location.search).get('utm_content')||'').toLowerCase().split(/[^a-z0-9]+/).filter(Boolean),k=null,i=w.indexOf('math');if(i!==-1){k=w[i+1]==='a'?'math_a':'math_b';}else{var keys=['compare','clients','zero','home','now'];for(var j=0;j<keys.length;j++){if(w.indexOf(keys[j])!==-1){k=keys[j];break;}}}if(k){document.documentElement.setAttribute('data-hook',k);}var h=(new URLSearchParams(location.search).get('hero')||'').toLowerCase();if(h==='b'||h==='c'){document.documentElement.setAttribute('data-hero',h);}var u=(new URLSearchParams(location.search).get('usp')||'').toLowerCase();if(u==='b'||u==='c'){document.documentElement.setAttribute('data-usp',u);}}catch(e){}})();</script>
+(function(){try{var w=(new URLSearchParams(location.search).get('utm_content')||'').toLowerCase().split(/[^a-z0-9]+/).filter(Boolean),k=null,i=w.indexOf('math');if(i!==-1){k=w[i+1]==='a'?'math_a':'math_b';}else{var keys=['compare','clients','zero','home','now'];for(var j=0;j<keys.length;j++){if(w.indexOf(keys[j])!==-1){k=keys[j];break;}}}if(k){document.documentElement.setAttribute('data-hook',k);}var h=(new URLSearchParams(location.search).get('hero')||'').toLowerCase();if(h==='b'||h==='c'){document.documentElement.setAttribute('data-hero',h);}}catch(e){}})();</script>
 <link rel="stylesheet" href="css/fonts.css?v=35aa182b">
 <link rel="stylesheet" href="css/style.css?v=73daaa35">
-<link rel="stylesheet" href="css/mini.css?v=4f7e18e4">
+<link rel="stylesheet" href="css/mini.css?v=f0a1cc05">
 <script type="module" src="js/main.js?v=c279ed8f"></script>
 </head>
 <body>
@@ -56,21 +56,14 @@
           <span class="line b pink" data-i18n="b1.h1b">AI-специалиста</span>
         </h1>
         <p class="lead" data-hook-for="default" data-i18n="b1.lead">и выйди на доход <b class="nobr">$1000 в месяц</b> — <span class="br">даже без знаний программирования</span></p>
-        <ul class="res hero-res" role="list" data-usp-for="a">
-          <li><span class="res-i" aria-hidden="true"><img src="assets/img/pin.webp" alt="" width="220" height="330"></span><div><b data-i18n="b1.ua1">Где найти первых клиентов</b><span data-i18n="b1.ua1d">10 каналов и что им написать — даже без опыта</span></div></li>
-          <li><span class="res-i" aria-hidden="true"><img src="assets/img/ic_site.webp" alt="" width="520" height="440"></span><div><b data-i18n="b1.ua2">Первый сайт сделаешь сам</b><span data-i18n="b1.ua2d">для настоящей компании, код пишет нейросеть</span></div></li>
-          <li><span class="res-i" aria-hidden="true"><img src="assets/img/bill_1.webp" alt="" width="700" height="532"></span><div><b data-i18n="b1.ua3">$1000 — не обещание, а расчёт</b><span data-i18n="b1.ua3d">3⁠–⁠4 заказа по $300 в месяц</span></div></li>
-        </ul>
-        <ul class="res hero-res" role="list" data-usp-for="b">
-          <li><span class="res-i" aria-hidden="true"><img src="assets/img/pin.webp" alt="" width="220" height="330"></span><div><b data-i18n="b1.ub1">Нет клиентов?</b><span data-i18n="b1.ub1d">Покажем 10 каналов, где их искать без опыта</span></div></li>
-          <li><span class="res-i" aria-hidden="true"><img src="assets/img/ic_site.webp" alt="" width="520" height="440"></span><div><b data-i18n="b1.ub2">А получится ли у меня?</b><span data-i18n="b1.ub2d">Первый сайт соберёшь сам — для настоящей компании</span></div></li>
-          <li><span class="res-i" aria-hidden="true"><img src="assets/img/bill_1.webp" alt="" width="700" height="532"></span><div><b data-i18n="b1.ub3">Не лохотрон ли?</b><span data-i18n="b1.ub3d">Бесплатно и без карты: проверь сам</span></div></li>
-        </ul>
-        <ul class="res hero-res" role="list" data-usp-for="c">
-          <li><span class="res-i" aria-hidden="true"><img src="assets/img/pin.webp" alt="" width="220" height="330"></span><div><b data-i18n="b1.uc1">Где брать заказчиков</b><span data-i18n="b1.uc1d">10 каналов и что им написать</span></div></li>
-          <li><span class="res-i" aria-hidden="true"><img src="assets/img/bill_1.webp" alt="" width="700" height="532"></span><div><b data-i18n="b1.uc2">Сколько брать за сайт</b><span data-i18n="b1.uc2d">цены в Ташкенте, чтобы не продешевить</span></div></li>
-          <li><span class="res-i" aria-hidden="true"><img src="assets/img/ic_site.webp" alt="" width="520" height="440"></span><div><b data-i18n="b1.uc3">Что реально приносит деньги</b><span data-i18n="b1.uc3d">такси, смены, биржи и ИИ-услуги — по цифрам</span></div></li>
-        </ul>
+        <div class="hero-usp">
+          <p class="mn-k hero-usp-k" data-i18n="b1.usp_k">Что будет на мини-курсе:</p>
+          <ul class="res hero-res" role="list">
+            <li><span class="res-i" aria-hidden="true"><img src="assets/img/pin.webp" alt="" width="220" height="330"></span><div><b data-i18n="b1.u1">Где найти первых клиентов</b><span data-i18n="b1.u1d">10 каналов и что им написать — даже без опыта</span></div></li>
+            <li><span class="res-i" aria-hidden="true"><img src="assets/img/ic_site.webp" alt="" width="520" height="440"></span><div><b data-i18n="b1.u2">Первый сайт сделаешь сам</b><span data-i18n="b1.u2d">для настоящей компании, код пишет нейросеть</span></div></li>
+            <li><span class="res-i" aria-hidden="true"><img src="assets/img/bill_1.webp" alt="" width="700" height="532"></span><div><b data-i18n="b1.u3">Пошаговый план выхода на первую $1000 в месяц</b><span data-i18n="b1.u3d">на ИИ-услугах: 3⁠–⁠4 заказа по $300</span></div></li>
+          </ul>
+        </div>
 
         <div class="hero-scene">
           <div class="glow hero-glow" aria-hidden="true"></div>
@@ -143,7 +136,7 @@
     <div class="hs-wrap" style="--fade:#190C1B">
       <ul class="les-grid hscroll" role="list">
         <li class="slot les">
-          <a class="les-art lv" href="https://t.me/" data-cta data-track="cta" data-place="lesson1" aria-label="Урок 1 — смотреть в Telegram">
+          <div class="les-art lv" aria-hidden="true">
             <span class="lv-scr" aria-hidden="true">
               <span class="lv-k" data-i18n="b2.s1">Что приносит деньги в Узбекистане</span>
               <span class="lv-cmp"><span class="lv-cmp-i"><img class="old" src="assets/img/old_desk.webp" alt="" loading="lazy"><i data-i18n="b2.s1a">Подработки, такси</i></span><span class="lv-cmp-i"><img class="new" src="assets/img/neon_laptop.webp" alt="" loading="lazy"><i data-i18n="b2.s1b">Профессия с ИИ</i></span></span>
@@ -151,14 +144,14 @@
             </span>
             <img class="lv-host" src="assets/img/nikita_talk.webp" alt="" width="620" height="602" loading="lazy">
             <span class="lv-ui" aria-hidden="true"><span class="lv-play"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></span><span class="lv-bar"><i style="--p:36%"></i></span></span>
-          </a>
+          </div>
           <span class="mn-k" data-i18n="b2.n1">Урок 1</span>
           <p class="slot-t" data-i18n="b2.t1">Как освоить онлайн-профессию AI-специалиста</p>
           <p class="lv-res" data-i18n="b2.r1"><b>Результат:</b> поймёшь, на чём сегодня реально зарабатывают в интернете и чем профессия в AI отличается от офлайн-подработок.</p>
           <p class="slot-d" data-i18n="b2.d1">Сравним по цифрам, что сейчас приносит деньги в Узбекистане: подработки, такси, трейдинг, маркетплейсы — и онлайн-профессия с ИИ.</p>
         </li>
         <li class="slot les">
-          <a class="les-art lv" href="https://t.me/" data-cta data-track="cta" data-place="lesson2" aria-label="Урок 2 — смотреть в Telegram">
+          <div class="les-art lv" aria-hidden="true">
             <span class="lv-scr" aria-hidden="true">
               <span class="lv-k" data-i18n="b2.s2">5 услуг AI-специалиста</span>
               <span class="lv-ics">
@@ -171,14 +164,14 @@
             </span>
             <img class="lv-host" src="assets/img/nikita_talk.webp" alt="" width="620" height="602" loading="lazy">
             <span class="lv-ui" aria-hidden="true"><span class="lv-play"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></span><span class="lv-bar"><i style="--p:58%"></i></span></span>
-          </a>
+          </div>
           <span class="mn-k" data-i18n="b2.n2">Урок 2</span>
           <p class="slot-t" data-i18n="b2.t2">5 услуг AI-специалиста, за которые платит бизнес</p>
           <p class="lv-res" data-i18n="b2.r2"><b>Результат:</b> выберешь одну услугу и поймёшь, с чего начать свой путь в онлайне.</p>
           <p class="slot-d" data-i18n="b2.d2">Сайты, Telegram-боты, контент, ИИ-рилсы и дизайн. Разберём, сколько платят за каждую услугу и с какой начать, если опыта нет.</p>
         </li>
         <li class="slot les">
-          <a class="les-art lv" href="https://t.me/" data-cta data-track="cta" data-place="lesson3" aria-label="Урок 3 — смотреть в Telegram">
+          <div class="les-art lv" aria-hidden="true">
             <span class="lv-scr" aria-hidden="true">
               <span class="lv-k lv-k--math" data-i18n="b2.s3">3⁠–⁠4 заказа по $300 = <b>$1000</b></span>
               <span class="lv-note lv-note--top" data-i18n="b2.s3a">Где искать первых заказчиков</span>
@@ -186,14 +179,14 @@
             </span>
             <img class="lv-host" src="assets/img/nikita_talk.webp" alt="" width="620" height="602" loading="lazy">
             <span class="lv-ui" aria-hidden="true"><span class="lv-play"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></span><span class="lv-bar"><i style="--p:24%"></i></span></span>
-          </a>
+          </div>
           <span class="mn-k" data-i18n="b2.n3">Урок 3</span>
           <p class="slot-t" data-i18n="b2.t3">Сколько зарабатывает AI-специалист</p>
           <p class="lv-res" data-i18n="b2.r3"><b>Результат:</b> составишь план до первого заказа и поймёшь, как в ближайшие несколько месяцев выйти на свою первую $1000 чистыми.</p>
           <p class="slot-d" data-i18n="b2.d3">3⁠–⁠4 заказа по $300 — это уже $1000 в месяц. Посчитаем, сколько вечеров в неделю это займёт, где искать первых заказчиков и что им написать. Разберём цены на сайты и другие услуги в Ташкенте, чтобы не продешевить, и как продавать себя дорого — так, чтобы бизнес захотел купить.</p>
         </li>
         <li class="slot les">
-          <a class="les-art lv lv--share" href="https://t.me/" data-cta data-track="cta" data-place="lesson4" aria-label="Практический урок — смотреть в Telegram">
+          <div class="les-art lv lv--share" aria-hidden="true">
             <span class="lv-scr" aria-hidden="true">
               <span class="lv-live" data-i18n="b2.s4live">Прямой эфир</span>
               <span class="lv-k" data-i18n="b2.s4">Сайт для твоей компании</span>
@@ -201,7 +194,7 @@
             </span>
             <img class="lv-face" src="assets/img/nikita_face.webp" alt="" width="240" height="240" loading="lazy">
             <span class="lv-ui" aria-hidden="true"><span class="lv-play"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></span><span class="lv-bar"><i style="--p:72%"></i></span></span>
-          </a>
+          </div>
           <span class="mn-k" data-i18n="b2.n4">Практика</span>
           <p class="slot-t" data-i18n="b2.t4">Практический урок в прямом эфире</p>
           <p class="lv-res" data-i18n="b2.r4"><b>Результат:</b> готовый сайт и первое предложение для твоей компании.</p>
@@ -252,7 +245,6 @@
         <li><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 12.5l4 4 9-9.5"/></svg><span data-i18n="b3.p4">Знает, что ИИ умеет, а что нет</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 12.5l4 4 9-9.5"/></svg><span data-i18n="b3.p5">Умеет продавать себя дорого — и научит этому тебя</span></li>
       </ul>
-      <p class="mentor-team" data-i18n="b3.team">Возможность попасть в команду Никиты Попко</p>
     </div>
     <div class="mentor-art">
       <div class="glow" aria-hidden="true"></div>
