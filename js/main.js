@@ -34,7 +34,7 @@ if (SHOT) {
 window.dataLayer = window.dataLayer || [];
 const hook = doc.getAttribute('data-hook') || 'default';
 function track(event, params = {}) {
-  window.dataLayer.push({ event, hook, ...params });
+  window.dataLayer.push({ event, hook, lang: doc.lang, ...params });
 }
 
 /* ---------- метка рекламы → параметр start ссылки на бота (последнее касание) ---------- */
@@ -54,6 +54,9 @@ $$('a[data-cta]').forEach((a) => {
   }
 });
 window.__AB = { start: payload, hook, bot: Boolean(botUrl) };
+
+/* ---------- переключатель UZ/RU: метки рекламы и вариант экрана идут с посетителем ---------- */
+if (location.search) $$('.lang-sw a').forEach((a) => { a.href = a.getAttribute('href') + location.search; });
 
 document.addEventListener('click', (e) => {
   const a = e.target.closest('[data-track]');

@@ -284,3 +284,16 @@ html[data-hook="home"] .hero [data-hook-for="home"]{display:block}
 @media (min-width:1100px){ .foot-grid--2{grid-template-columns:minmax(0,1fr) minmax(0,2.2fr)} }
 .foot-policy{color:var(--text-2);text-decoration:underline;text-underline-offset:3px}
 .foot-policy:hover{color:#fff}
+
+/* ---------- переключатель языка UZ / RU (первый экран, правый верхний угол) ---------- */
+.lang-sw{position:absolute;top:18px;right:18px;z-index:6;display:flex;gap:2px;padding:3px;border-radius:999px;
+  background:rgba(14,11,18,.55);border:1px solid rgba(255,255,255,.16);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.lang-sw a{min-width:44px;min-height:36px;display:grid;place-items:center;padding:0 12px;border-radius:999px;
+  color:#D3CFD8;font:700 14px/1 'Inter',system-ui,sans-serif;letter-spacing:.04em;text-decoration:none;transition:background .2s,color .2s}
+.lang-sw a:hover{color:#fff}
+.lang-sw a[aria-current="page"]{background:#FF2A7F;color:#fff}
+@media (max-width:767px){.lang-sw{top:10px;right:10px;padding:2px}.lang-sw a{min-width:40px;min-height:30px;padding:0 9px}}
+
+/* латиница граффити-шрифтов логотипа: fonts.css (копия образца) несёт только кириллицу, а в узбекской версии логотип «AI BUYURTMA» */
+@font-face{font-family:'Rubik Wet Paint';font-style:normal;font-weight:400;font-display:swap;src:url(../assets/fonts/RubikWetPaint-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F}
+@font-face{font-family:'Rubik Spray Paint';font-style:normal;font-weight:400;font-display:swap;src:url(../assets/fonts/RubikSprayPaint-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F}

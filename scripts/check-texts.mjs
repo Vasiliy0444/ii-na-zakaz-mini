@@ -58,7 +58,7 @@ function approvedStrings(md) {
 }
 
 // Текст страницы: без <head>, скриптов и стилей; теги → пробел; атрибуты не считаются.
-const html = readFileSync(resolve(root, 'index.html'), 'utf8');
+const html = readFileSync(resolve(root, 'ru/index.html'), 'utf8'); // русская версия; узбекскую сверяет scripts/build.py
 const body = html.split('<body>')[1]
   .replace(/<script[\s\S]*?<\/script>/g, ' ')
   .replace(/<style[\s\S]*?<\/style>/g, ' ')
@@ -123,6 +123,7 @@ const missing = expected.filter((s) => !pageText.includes(s));
 const mdText = norm(md);
 const ALLOWED = new Set([
   'ИИ', 'НА ЗАКАЗ',                                          // логотип
+  'UZ', 'RU',                                                // переключатель языка
   ...ADDED.map(norm),
 ]);
 const extra = [...new Set(pageNodes)].filter((s) => !mdText.includes(s) && !ALLOWED.has(s));

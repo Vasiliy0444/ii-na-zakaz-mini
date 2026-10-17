@@ -1,0 +1,212 @@
+{
+  "_about": "Узбекская версия страницы (латиница, o‘/g‘ через U+2018, обращение «siz» — как в креативах, проверенных носителем 15.10 и 17.10.2026). text — по ключам data-i18n из src/index.src.html, replace — точные замены в атрибутах и мета, img — картинки с текстом. Правки носителя вносить сюда, потом python3 scripts/build.py.",
+  "text": {
+    "b1.kick": "Bepul mini-kurs",
+    "b1.h1a": "Onlayn kasbni egallang:",
+    "b1.h1b": "AI-mutaxassis",
+    "b1.lead": "va <b class=\"nobr\">oyiga $1000</b> toping — <span class=\"br\">dasturlashni bilmasangiz ham</span>",
+    "cta.start": "Bepul mini-kursni olish →",
+    "b1.learn_k": "Mini-kursda:",
+    "b1.l1": "AI-mutaxassis kasbi nimadan iborat ekanini va biznes bitta buyurtma uchun nega $300 to‘lashini ko‘rsatamiz",
+    "b1.l2": "AI bilan qilinadigan 5 ta onlayn xizmatni ko‘rib chiqamiz va qaysi biridan boshlashni maslahat beramiz",
+    "b1.l3": "Oyiga $1000 topish rejasini beramiz: nechta buyurtma, qanday narxda va haftasiga nechta kechqurun",
+    "b1.l4": "O‘z tumaningizdan 3 ta kompaniya topasiz va amaliy darsda ulardan biri uchun sayt yasaysiz",
+    "b1.bonus_k": "Bonus:",
+    "b1.bonus_t": "🎁 «Top-10 kanal: AI xizmatlari uchun mijoz qayerdan topiladi».",
+    "b1.bonus_d": "Birinchi dars bilan birga keladi.",
+    "b1.file_end": "Birinchi dars bilan birga keladi",
+    "b2.h2a": "Mini-kursda",
+    "b2.h2b": "nimalar bo‘ladi",
+    "b2.s1": "O‘zbekistonda nima pul keltiradi",
+    "b2.s1a": "Qo‘shimcha ish, taksi",
+    "b2.s1b": "AI kasbi",
+    "b2.s1c": "Raqamlar bilan solishtiramiz",
+    "b2.n1": "1-dars",
+    "b2.t1": "Onlayn AI-mutaxassis kasbini qanday egallash mumkin",
+    "b2.r1": "<b>Natija:</b> bugun internetda aslida nimadan pul topishlarini va AI kasbi oflayn qo‘shimcha ishlardan nimasi bilan farq qilishini tushunasiz.",
+    "b2.d1": "Hozir O‘zbekistonda nima pul keltirishini raqamlar bilan solishtiramiz: qo‘shimcha ishlar, taksi, treyding, marketpleyslar — va AI bilan onlayn kasb.",
+    "b2.s2": "AI-mutaxassisning 5 ta xizmati",
+    "b2.s2a": "Saytlar",
+    "b2.s2b": "Telegram-botlar",
+    "b2.s2c": "Kontent",
+    "b2.s2d": "AI-Reels",
+    "b2.s2e": "Dizayn",
+    "b2.n2": "2-dars",
+    "b2.t2": "Biznes pul to‘laydigan 5 ta AI xizmati",
+    "b2.r2": "<b>Natija:</b> bitta xizmatni tanlaysiz va onlayn yo‘lingizni nimadan boshlashni bilib olasiz.",
+    "b2.d2": "Saytlar, Telegram-botlar, kontent, AI-Reels va dizayn. Har bir xizmatga qancha to‘lashlarini va tajriba bo‘lmasa, qaysi biridan boshlash kerakligini ko‘rib chiqamiz.",
+    "b2.s3": "3–4 buyurtma × $300 = <b>$1000</b>",
+    "b2.s3a": "Ilk mijozlarni qayerdan topish kerak",
+    "b2.n3": "3-dars",
+    "b2.t3": "AI-mutaxassis qancha pul topadi",
+    "b2.r3": "<b>Natija:</b> birinchi buyurtmagacha reja tuzasiz va yaqin bir necha oyda ilk sof $1000 ni qanday topishni tushunasiz.",
+    "b2.d3": "$300 dan 3–4 ta buyurtma — bu oyiga $1000 degani. Buning uchun haftasiga nechta kechqurun kerakligini hisoblab chiqamiz, ilk mijozlarni qayerdan topishni va ularga nima deb yozishni ko‘rsatamiz. Ishingizni arzonga sotib yubormaslik uchun Toshkentda sayt va boshqa xizmatlar narxini ko‘rib chiqamiz. O‘zingizni qimmatga sotishni ham o‘rgatamiz — shunda biznes sizdan xizmat sotib olishni xohlaydi.",
+    "b2.s4live": "Jonli efir",
+    "b2.s4": "Kompaniya uchun sayt",
+    "b2.n4": "Amaliyot",
+    "b2.t4": "Jonli efirda amaliy dars",
+    "b2.r4": "<b>Natija:</b> tayyor sayt va tanlagan kompaniyangizga birinchi taklif.",
+    "b2.d4": "Jonli efirda biz bilan birga oldingi darsda tanlagan kompaniyalaringizdan biri uchun sayt yasaysiz. Keyin xizmatingizni birinchi marta mijozga taklif qilasiz.",
+    "b2.cd_k": "Sertifikat",
+    "b2.cd_sub": "ushbu sertifikat tasdiqlaydi:",
+    "b2.cd_name": "Ismingiz",
+    "b2.cd_what": "«AI buyurtma» mini-kursini tamomlagan: 3 ta dars va haqiqiy kompaniya uchun sayt",
+    "b2.cd_sign": "Nikita Popko",
+    "b2.cd_role": "mini-kursni olib boruvchi",
+    "b2.cert": "Barcha darslar va amaliyotni tugatsangiz — ismingiz yozilgan sertifikat olasiz.",
+    "b3.h2a": "Mini-kurs",
+    "b3.h2b": "ustozi",
+    "b3.name": "Nikita Popko",
+    "b3.role": "AI yechimlari agentligi asoschisi",
+    "b3.rg1b": "Oyiga $5000",
+    "b3.rg1": "AI kasbida noldan boshlab shunga erishgan",
+    "b3.rg2b": "20+ mijoz",
+    "b3.rg2": "har oy unga buyurtma beradi",
+    "b3.rg3b": "4 kishi",
+    "b3.rg3": "jamoasida uning o‘rniga buyurtmalarni bajaradi",
+    "b3.p1": "Yarim yilda 30+ sayt, ilova, CRM-tizim va bot yasadi",
+    "b3.p3": "Yangi neyrotarmoqlarni boshqalardan oldin o‘rganib, kichik va o‘rta biznesda qo‘llaydi",
+    "b3.p4": "AI nima qila olishini va nima qila olmasligini biladi",
+    "b3.p5": "O‘zini qimmatga sotishni biladi — va buni sizga ham o‘rgatadi",
+    "b4.h2a": "Birinchi darsdan",
+    "b4.h2b": "bugun kechqurun boshlang",
+    "b4.bonus_k": "Bonus:",
+    "b4.bonus_t": "🎁 «Top-10 kanal: AI xizmatlari uchun mijoz qayerdan topiladi».",
+    "b4.under": "Botni ishga tushirishingiz bilan birinchi dars darhol keladi.",
+    "b4.faq_a": "Ko‘p beriladigan",
+    "b4.faq_b": "savollar",
+    "b4.q1": "Bu $1000 va’da qiladigan yana bir aldov emasmi?",
+    "b4.a1": "O‘zingiz tekshirib ko‘ring: mini-kurs bepul, pul ham, karta raqamingizni ham so‘ramaymiz. Darslarni ko‘ring va sizga mos keladimi-yo‘qmi, o‘zingiz hal qiling. $1000 — bu va’da emas, hisob-kitob: oyiga har biri $300 dan 3–4 ta buyurtma.",
+    "b4.q2": "Dasturlashni bilish kerakmi?",
+    "b4.a2": "Yo‘q. Kodni neyrotarmoq yozadi, siz esa vazifa, did va mijoz uchun mas’ulsiz. Har bir qadamni ekranda ko‘rsatamiz.",
+    "b4.q3": "Boshlash uchun nima kerak?",
+    "b4.a3": "Noutbuk, internet va bepul neyrotarmoqlar. Aynan qaysilari — darslarda ko‘rsatamiz. Darslarning o‘zini esa telefondan ko‘rsa bo‘ladi.",
+    "b4.q4": "Buni o‘qish bilan qanday qo‘shib olib boraman?",
+    "b4.a4": "1–3-darslarni qulay vaqtda ko‘rasiz. Amaliy dars vaqtini botda tanlaysiz. Buyurtmalar kechqurunlari bajariladi: haftasiga 2–3 kechqurun, universitetdagi darslarni qoldirishga to‘g‘ri kelmaydi.",
+    "b4.q5": "Bu yana kurs sotishmi?",
+    "b4.a5": "Yo‘q. Bu amaliyot: 3 ta dars va siz tanlagan kompaniya uchun sayt yasaydigan amaliy dars. Pullik kurs haqida faqat birinchi qadamlarni tashlaganingizdan keyin aytamiz — qaror esa o‘zingizniki.",
+    "b4.q6": "Menga mijoz berasizlarmi?",
+    "b4.a6": "Yo‘q. Mijozlarni qayerdan izlashni, ularga nima deb yozishni va ishingizni arzonga sotib yubormaslikni ko‘rsatamiz. Buyurtmalarni topish va bajarish — sizning ishingiz.",
+    "b4.q7": "Men 20 yoshdaman, tajribam ham yo‘q. Menga kim ishonib buyurtma beradi?",
+    "b4.a7": "Bu yo‘nalish paydo bo‘lganiga bir-ikki yil bo‘ldi, hech kimda diplom yo‘q. Mijoz bitta narsani so‘raydi: qilib bera olasizmi yoki yo‘qmi. Amaliy darsda siz haqiqiy kompaniya uchun sayt yasaysiz — bu ko‘rsatsa bo‘ladigan birinchi ishingiz.",
+    "b4.q8": "Kimga mos kelmaydi?",
+    "b4.a8": "Ishlamasdan pul topmoqchi bo‘lsangiz, vaqtingizni behuda sarflamang. Buyurtmalarni o‘zingiz topib, o‘zingiz bajarishingiz kerak — haftasiga 2–3 kechqurun. Daromad harakatlaringizga bog‘liq, biz uni kafolatlamaymiz.",
+    "ft.entity": "IP (yakka tartibdagi tadbirkor, Rossiya) Belyakov Vasiliy Aleksandrovich · INN 772440246130",
+    "ft.bank": "Hisob-kitob raqami 40802810120000927878, «Bank Tochka» MChJ · BIK 044525104 · Korrespondent hisobvaraq 30101810745374525104",
+    "ft.privacy": "Maxfiylik siyosati",
+    "ft.disc": "Daromad harakatlaringizga bog‘liq, biz uni kafolatlamaymiz. Sahifadagi summalar — bozordagi taxminiy ko‘rsatkichlar, va’da emas.",
+    "hook.compare.a": "Taksi, smenali ish, Uzum yoki onlayn kasb:",
+    "hook.compare.b": "qaysi biri haqiqatan oyiga $1000 keltiradi",
+    "hook.compare.c": "— 2026-yil uchun solishtiramiz",
+    "hook.math_a.a": "Oyiga $1000 — bu passiv daromad emas,",
+    "hook.math_a.b": "bizneslardan 3–4 ta buyurtma.",
+    "hook.math_a.c": "Hisob-kitobni ochiq ko‘rsatamiz",
+    "hook.math_b.a": "Oyiga $1000 —",
+    "hook.math_b.b": "bu bizneslardan $300 dan 3–4 ta buyurtma.",
+    "hook.math_b.c": "Hisob-kitobni ochiq ko‘rsatamiz",
+    "hook.now.a": "Ilgari sayt yasashni yillab o‘rganishardi.",
+    "hook.now.b": "Hozir AI-mutaxassis uni bir kunda yasaydi",
+    "hook.now.c": "— biznes esa avvalgidek 2,5–5 mln so‘m to‘laydi",
+    "hook.zero.a": "Talaba bo‘lsangiz va dasturchi bo‘lmasangiz,",
+    "hook.zero.b": "onlayn kasbni noldan",
+    "hook.zero.c": "egallash mumkinmi?",
+    "hook.clients.a": "AI bilan ishlay olasiz, lekin mijozingiz yo‘qmi?",
+    "hook.clients.b": "Talabalar ilk mijozlarni qayerdan topishini ko‘rsatamiz",
+    "hook.clients.c": "— frilans-birjalarsiz va tajribasiz",
+    "hook.home.a": "Shahringizdagi biznes uchun",
+    "hook.home.b": "sayt va bot yasashni o‘rgatamiz",
+    "hook.home.c": "— mijozlarni esa o‘z shahringizda topasiz"
+  },
+  "replace": [
+    [
+      "<title>ИИ на заказ — бесплатный мини-курс в Telegram</title>",
+      "<title>AI buyurtma — Telegramda bepul mini-kurs</title>"
+    ],
+    [
+      "Освой онлайн-профессию AI-специалиста и выйди на доход $1000 в месяц — даже без знаний программирования. Бесплатный мини-курс в Telegram · 3 урока и практика.",
+      "Onlayn AI-mutaxassis kasbini egallang va oyiga $1000 toping — dasturlashni bilmasangiz ham. Telegramda bepul mini-kurs · 3 ta dars va amaliyot."
+    ],
+    [
+      "content=\"ИИ на заказ\"",
+      "content=\"AI buyurtma\""
+    ],
+    [
+      "Освой онлайн-профессию AI-специалиста — бесплатный мини-курс",
+      "Onlayn AI-mutaxassis kasbini egallang — bepul mini-kurs"
+    ],
+    [
+      "Бесплатный мини-курс в Telegram · 3 урока и практика.",
+      "Telegramda bepul mini-kurs · 3 ta dars va amaliyot."
+    ],
+    [
+      "alt=\"Никита Попко за ноутбуком собирает сайт\"",
+      "alt=\"Nikita Popko noutbukda sayt yasamoqda\""
+    ],
+    [
+      "alt=\"Никита Попко показывает готовый сайт владельцу пекарни\"",
+      "alt=\"Nikita Popko novvoyxona egasiga tayyor saytni ko‘rsatmoqda\""
+    ],
+    [
+      "alt=\"Никита Попко с ноутбуком, рядом переписка с заказом, бот и монеты\"",
+      "alt=\"Nikita Popko noutbuk bilan, yonida buyurtma haqidagi yozishma, bot va tangalar\""
+    ],
+    [
+      "aria-roledescription=\"листалка\"",
+      "aria-roledescription=\"varaqlagich\""
+    ],
+    [
+      "aria-label=\"PDF-гайд в подарок при регистрации: «Топ-10 каналов, где найти клиентов на ИИ-услуги», превью страниц\"",
+      "aria-label=\"Ro‘yxatdan o‘tganda sovg‘a — PDF-qo‘llanma «Top-10 kanal: AI xizmatlari uchun mijoz qayerdan topiladi», sahifalar\""
+    ],
+    [
+      "alt=\"Обложка PDF «Топ-10 каналов, где найти клиентов на ИИ-услуги»\"",
+      "alt=\"PDF muqovasi: «Top-10 kanal: AI xizmatlari uchun mijoz qayerdan topiladi»\""
+    ],
+    [
+      "alt=\"Оглавление: 10 каналов, первые четыре — карты, Instagram, Telegram-каналы с заказами, Uzum Market; остальные откроются в боте\"",
+      "alt=\"Mundarija: 10 ta kanal, dastlabki to‘rttasi — xaritalar, Instagram, buyurtmali Telegram-kanallar, Uzum Market; qolganlari botda ochiladi\""
+    ],
+    [
+      "alt=\"Страница «С какого канала начать, если среди знакомых нет предпринимателей» — откроется в боте\"",
+      "alt=\"«Tanishlaringiz orasida tadbirkor bo‘lmasa, qaysi kanaldan boshlash kerak» sahifasi — botda ochiladi\""
+    ],
+    [
+      "alt=\"Страница канала 01 «Карты: 2GIS, Яндекс и Google»: что предложить, как искать и шаблон первого сообщения\"",
+      "alt=\"01-kanal sahifasi «Xaritalar: 2GIS, Yandex va Google»: nima taklif qilish, qanday qidirish va birinchi xabar namunasi\""
+    ],
+    [
+      "aria-label=\"Предыдущая страница\"",
+      "aria-label=\"Oldingi sahifa\""
+    ],
+    [
+      "aria-label=\"Следующая страница\"",
+      "aria-label=\"Keyingi sahifa\""
+    ],
+    [
+      "aria-label=\"Следующий урок\"",
+      "aria-label=\"Keyingi dars\""
+    ],
+    [
+      "<span class=\"l-big\">ИИ</span><span class=\"l-small\">НА ЗАКАЗ</span>",
+      "<span class=\"l-big\">AI</span><span class=\"l-small\">BUYURTMA</span>"
+    ],
+    [
+      "aria-label=\"ИИ на заказ\"",
+      "aria-label=\"AI buyurtma\""
+    ],
+    [
+      "alt=\"Никита Попко, основатель агентства AI-разработки\"",
+      "alt=\"Nikita Popko, AI yechimlari agentligi asoschisi\""
+    ],
+    [
+      "aria-label=\"Начать мини-курс\"",
+      "aria-label=\"Mini-kursni boshlash\""
+    ]
+  ],
+  "img": {
+    "assets/img/bonus_cover.webp": "assets/img/uz/bonus_cover.webp",
+    "assets/img/bonus_contents.webp": "assets/img/uz/bonus_contents.webp",
+    "assets/img/bonus_start.webp": "assets/img/uz/bonus_start.webp",
+    "assets/img/bonus_channel01.webp": "assets/img/uz/bonus_channel01.webp"
+  }
+}

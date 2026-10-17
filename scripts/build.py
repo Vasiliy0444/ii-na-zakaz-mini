@@ -1,4 +1,7 @@
-"""Собирает index.html из src/index.src.html.
+"""Собирает страницу на двух языках из src/index.src.html.
+
+Узбекская версия (главная, реклама идёт на Узбекистан) — index.html в корне, тексты из src/i18n/uz.json.
+Русская — ru/index.html, тексты прямо из src/index.src.html. Переключатель языка — в первом экране.
 
 Что делает:
 1. Подставляет детали образца из src/parts.json: рваные края, силуэт города, иконки, начинку кнопки.
@@ -19,7 +22,9 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "src" / "index.src.html"
 PARTS = ROOT / "src" / "parts.json"
 HOOKS_JS = ROOT / "js" / "hooks.js"
-OUT = ROOT / "index.html"
+UZ = ROOT / "src" / "i18n" / "uz.json"
+SITE = "https://aibuyurtma.com/"
+CYRILLIC = re.compile(r"[А-Яа-яЁё]")
 
 # Та же логика, что pickHook в js/hooks.js; совпадение проверяет tests/hooks.test.mjs.
 HEAD_HOOK_SCRIPT = (
@@ -50,7 +55,7 @@ def read_hooks() -> dict[str, list[str]]:
     return hooks
 
 
-def hook_h1s(hooks: dict[str, list[str]]) -> str:
+def hook_h1s(hooks: dict[str, list[str]]) -> str:  # тексты RU; узбекские подставит translate() по data-i18n
     rows = []
     for key, lines in hooks.items():
         spans = []
@@ -60,15 +65,19 @@ def hook_h1s(hooks: dict[str, list[str]]) -> str:
     return "\n".join(rows)
 
 
-def typography(text: str) -> str:
+def typography(text: str, lang: str = "ru") -> str:
     text = re.sub(r"(\d)–(\d)", rf"\1{WJ}–{WJ}\2", text)
+    if lang == "uz":
+        text = text.replace("AI-", "AI\u2011")  # неразрывный дефис: «AI-mutaxassis» не рвётся по строкам
+        text = re.sub(r"[ ]+—", f"{NBSP}—", text)
+        return re.sub(r"(\d)[ ]+(ta|mln|ming|so‘m|kishi|mijoz|oy|yil)\b", rf"\1{NBSP}\2", text)
     text = re.sub(rf"(?<![0-9A-Za-zА-Яа-яЁё])({SHORT_WORDS})[ ]+(?=\S)", rf"\1{NBSP}", text, flags=re.IGNORECASE)
     text = re.sub(r"[ ]+—", f"{NBSP}—", text)
     text = re.sub(r"(\d)[ ]+(млн|тыс|сум|лет|компан|заказ|урок|вечер|клиент|человек|услуг)", rf"\1{NBSP}\2", text)
     return text
 
 
-def apply_typography(html: str) -> str:
+def apply_typography(html: str, lang: str = "ru") -> str:
     out, skip = [], False
     for part in re.split(r"(<[^>]+>)", html):
         if part.startswith("<"):
@@ -79,7 +88,7 @@ def apply_typography(html: str) -> str:
                 skip = False
             out.append(part)
         else:
-            out.append(part if skip else typography(part))
+            out.append(part if skip else typography(part, lang))
     return "".join(out)
 
 
@@ -92,7 +101,56 @@ def bust(html: str) -> str:
     return re.sub(r'((?:href|src)=")((?:css|js)/[\w.-]+\.(?:css|js))"', repl, html)
 
 
-def main() -> None:
+def element_spans(html: str, key: str) -> list[tuple[int, int]]:
+    """Границы содержимого всех элементов с data-i18n="key" (между > открывающего и </tag> закрывающего тега)."""
+    spans = []
+    for m in re.finditer(rf'<(\w+)\b[^>]*\sdata-i18n="{re.escape(key)}"[^>]*>', html):
+        tag, depth, pos = m.group(1), 1, m.end()
+        for t in re.finditer(rf"<(/?){tag}\b[^>]*>", html[pos:]):
+            depth += -1 if t.group(1) else 1
+            if depth == 0:
+                spans.append((pos, pos + t.start()))
+                break
+        else:
+            raise SystemExit(f"не закрыт тег {tag} у {key}")
+    return spans
+
+
+def translate(html: str, uz: dict) -> str:
+    keys = set(re.findall(r'data-i18n="([\w.]+)"', html))
+    missing, extra = keys - uz["text"].keys(), uz["text"].keys() - keys
+    if missing or extra:
+        raise SystemExit(f"src/i18n/uz.json: нет перевода {sorted(missing)}; лишние ключи {sorted(extra)}")
+    for key in keys:
+        for start, end in reversed(element_spans(html, key)):
+            html = html[:start] + uz["text"][key] + html[end:]
+    for ru, tr in uz["replace"] + list(uz["img"].items()):
+        if ru not in html:
+            raise SystemExit(f"src/i18n/uz.json: не найдено для замены: {ru[:70]}")
+        html = html.replace(ru, tr)
+    html = html.replace('<html lang="ru">', '<html lang="uz">')
+    visible = re.sub(r"<!--.*?-->|<script.*?</script>|<style.*?</style>", "", html, flags=re.S)
+    left = sorted(set(m.group(0) for m in re.finditer(r"[^<>\"]{0,30}[А-Яа-яЁё][^<>\"]{0,30}", visible)))
+    if left:
+        raise SystemExit(f"в узбекской версии осталась кириллица: {left[:5]}")
+    return html
+
+
+def lang_switch(lang: str) -> str:
+    uz_href, ru_href = ("./", "ru/") if lang == "uz" else ("../", "./")
+    cur = {"uz": ' aria-current="page"', "ru": ""} if lang == "uz" else {"uz": "", "ru": ' aria-current="page"'}
+    return (f'<nav class="lang-sw" aria-label="{"Til" if lang == "uz" else "Язык"}">'
+            f'<a href="{uz_href}" lang="uz" hreflang="uz"{cur["uz"]}>UZ</a>'
+            f'<a href="{ru_href}" lang="ru" hreflang="ru"{cur["ru"]}>RU</a></nav>')
+
+
+def to_subdir(html: str) -> str:
+    """Русская версия лежит в ru/: свои файлы — на уровень выше."""
+    html = re.sub(r'((?:href|src|srcset)=")((?:assets|css|js)/|privacy\.html)', r"\1../\2", html)
+    return html.replace(f'content="{SITE}"', f'content="{SITE}ru/"')
+
+
+def render(lang: str) -> str:
     html = SRC.read_text(encoding="utf-8")
     parts = json.loads(PARTS.read_text(encoding="utf-8"))
     html = html.replace("{{HEAD_HOOK_SCRIPT}}", HEAD_HOOK_SCRIPT)
@@ -100,12 +158,22 @@ def main() -> None:
     for key, value in parts.items():
         if not key.startswith("_"):
             html = html.replace("{{" + key + "}}", value)
+    html = html.replace("{{LANG_SWITCH}}", lang_switch(lang))
     left = re.findall(r"\{\{[A-Z_a-z]+\}\}", html)
     if left:
         raise SystemExit(f"не заполнены места: {sorted(set(left))}")
-    html = bust(apply_typography(html))
-    OUT.write_text(html, encoding="utf-8")
-    print(f"index.html собран: {len(html) // 1024} КБ")
+    if lang == "uz":
+        html = translate(html, json.loads(UZ.read_text(encoding="utf-8")))
+    html = bust(apply_typography(html, lang))
+    return to_subdir(html) if lang == "ru" else html
+
+
+def main() -> None:
+    for lang, out in (("uz", ROOT / "index.html"), ("ru", ROOT / "ru" / "index.html")):
+        html = render(lang)
+        out.parent.mkdir(exist_ok=True)
+        out.write_text(html, encoding="utf-8")
+        print(f"{out.relative_to(ROOT)} собран ({lang}): {len(html) // 1024} КБ")
 
 
 if __name__ == "__main__":

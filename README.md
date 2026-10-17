@@ -3,10 +3,19 @@
 Страница: https://aibuyurtma.com/ (домен у Hostinger, файлы на GitHub Pages; старый адрес vasiliy0444.github.io/ii-na-zakaz-mini перекидывает сюда) (закрыта от поисковиков — `noindex`).
 Дизайн-система — страница курса «ИИ на заказ», откуда что взято — `SOURCE.md`.
 
+## Языки
+
+- **Узбекская версия — главная**: `https://aibuyurtma.com/` (`index.html`, `privacy.html`). Реклама идёт на Узбекистан.
+- **Русская**: `https://aibuyurtma.com/ru/` (`ru/index.html`, `ru/privacy.html`). Переключатель UZ/RU — в правом верхнем углу первого экрана, метки рекламы переносит с собой.
+- Узбекский текст — `src/i18n/uz.json`: по ключам `data-i18n` из `src/index.src.html`, плюс точные замены в атрибутах и мета (`replace`) и картинки бонуса (`img` → `assets/img/uz/`). Сборка падает, если у ключа нет перевода или в узбекской версии осталась кириллица.
+- Перевод: ИИ + слепой обратный перевод 17.10.2026. **Живой носитель ещё не читал.** Файл для него — `python3 scripts/docx_native.py` → `research/13-lending-intensiva/для-носителя/Лендинг мини-курса RU-UZ — на вычитку.docx` (Русский | Узбекский | Правки), копия на Рабочем столе. Правки носителя вносить в `src/i18n/uz.json` (и `privacy.html`), потом сборка.
+- Логотип в узбекской версии — «AI BUYURTMA»; латиница граффити-шрифтов — `assets/fonts/Rubik*-latin.woff2` (Google Fonts, OFL), подключена в `css/mini.css`.
+- В `dataLayer` у всех событий есть `lang` (`uz` / `ru`).
+
 ## Как устроено
 
 - Статичная страница без фреймворков: `index.html`, `css/`, `js/`, `assets/`.
-- `index.html` собирается из `src/index.src.html` командой `python3 scripts/build.py`. Сам `index.html` руками не править.
+- `index.html` (UZ) и `ru/index.html` (RU) собираются из `src/index.src.html` командой `python3 scripts/build.py`. Сами страницы руками не править.
   Скрипт подставляет детали образца из `src/parts.json`, заголовки под хуки из `js/hooks.js`, типографику и метки версий файлов.
 - `css/style.css` и `css/fonts.css` — копии страницы курса байт в байт. Всё своё — в `css/mini.css`.
 
