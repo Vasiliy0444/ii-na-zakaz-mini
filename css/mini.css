@@ -14,9 +14,17 @@
 .hero-res .res-i img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 8px 12px rgba(0,0,0,.55))}
 .hero-res b{font-size:clamp(17px, 15.6px + .4vw, 21px)}
 .hero #cta-hero{margin-top:clamp(22px, 2vw, 32px)}
-.hero-person--laptop{aspect-ratio:1200/1478;width:clamp(560px, 44vw, 660px);left:calc(50% + 40px);top:90px}
-.hero-person--laptop img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(-20px 30px 50px rgba(0,0,0,.55));
-  -webkit-mask-image:linear-gradient(0deg,transparent 0,#000 14%);mask-image:linear-gradient(0deg,transparent 0,#000 14%)}
+.hero-person--laptop{aspect-ratio:4/5;width:clamp(560px, 44vw, 660px);left:calc(50% + 30px);top:40px}
+.hero-person--laptop .hv{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(-20px 30px 50px rgba(0,0,0,.55));
+  -webkit-mask-image:linear-gradient(0deg,transparent 0,#000 9%);mask-image:linear-gradient(0deg,transparent 0,#000 9%)}
+/* три картинки на выбор (Вася 17.10): ?hero=b — Никита с владельцем пекарни, ?hero=c — Никита с перепиской и монетами */
+.hero .hv-b,.hero .hv-c,html[data-hero="b"] .hero .hv-a,html[data-hero="c"] .hero .hv-a{display:none}
+html[data-hero="b"] .hero .hv-b,html[data-hero="c"] .hero .hv-c{display:block}
+html[data-hero="b"] .hero-person--laptop{aspect-ratio:1/1;width:clamp(600px, 50vw, 780px);left:calc(50% - 20px);top:70px}
+.hero .hv-b{-webkit-mask-image:linear-gradient(0deg,transparent 0,#000 9%),linear-gradient(270deg,transparent 0,#000 7%);-webkit-mask-composite:source-in;
+  mask-image:linear-gradient(0deg,transparent 0,#000 9%),linear-gradient(270deg,transparent 0,#000 7%);mask-composite:intersect}
+.hero .hv-c{-webkit-mask-image:linear-gradient(0deg,transparent 0,#000 9%),linear-gradient(90deg,transparent 0,#000 7%);-webkit-mask-composite:source-in;
+  mask-image:linear-gradient(0deg,transparent 0,#000 9%),linear-gradient(90deg,transparent 0,#000 7%);mask-composite:intersect}
 
 /* хуки рекламы: все 8 заголовков в разметке, нужный выбирает скрипт в <head> атрибутом data-hook на <html> — без мигания и без JS для показа */
 .hero [data-hook-for]{display:none}
@@ -49,26 +57,107 @@ html[data-hook="home"] .hero [data-hook-for="home"]{display:block}
   .hero-res b{font-size:16px;line-height:1.3}
   .hero .d1--hook .b{font-size:clamp(38px, 11.6vw, 52px)}
   .hero .d1[data-hook-for="default"] .a{font-size:clamp(27px, 9.1vw, 40px)}                      /* «Освой онлайн-профессию» в одну строку */
-  .hero-person--laptop{left:auto;right:-18px;top:0;width:clamp(330px, 92vw, 400px)}
+  .hero-person--laptop{left:auto;right:-10px;top:-14px;width:clamp(330px, 96vw, 420px)}
+  html[data-hero="b"] .hero-person--laptop{right:auto;left:-6px;width:calc(100% + 12px);top:-34px}
+  html[data-hero="b"] .hero-copy{padding-top:0}
+  html[data-hero="b"] .hero-copy>.hero-scene{order:-1;height:clamp(240px, 68vw, 290px);margin:0 calc(-1*var(--pad-x)) 4px}   /* B: картинка первой */
+  html[data-hero="c"] .hero-copy>.hero-res{display:none}                                                                     /* C: без пунктов, короче всех */
   .dock-in{white-space:normal}
 }
 /* короткие телефоны (iPhone SE, окно Telegram) под длинным заголовком хука: пункты уходят, кнопка остаётся в первом экране */
-@media (max-width:767px) and (max-height:740px){ html[data-hook] .hero-copy>.hero-res{display:none} }
+@media (max-width:767px) and (max-height:740px){ html[data-hook] .hero-copy>.hero-res,html[data-hero="b"] .hero-copy>.hero-res{display:none} }
 
-/* ---------- 1а. «На мини-курсе» и бонус ---------- */
-.learn-grid{list-style:none;margin:clamp(16px,1.6vw,24px) 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 16px} /* зазоры .checks */
+/* ---------- 1а. «На мини-курсе» и бонус-«файл»: список слева, файл справа, на компьютере — на весь экран ---------- */
+.learn-wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(28px, 4vw, 80px);align-items:center}
+@media (min-width:1100px){ .learn-sec{min-height:100vh;display:flex;align-items:center;padding:clamp(48px, 5vw, 80px) 0 clamp(96px, 8vw, 120px)} .learn-sec>.wrap{width:100%} }
+.learn-grid{list-style:none;margin:clamp(16px,1.6vw,24px) 0 0;padding:0;display:grid;grid-template-columns:minmax(0,1fr);gap:12px} /* зазоры .checks */
 .learn{display:grid;grid-template-columns:30px 1fr;gap:14px;align-items:start;padding:16px 18px;border-radius:18px}   /* раскладка .check без курсора-руки */
 .learn svg{width:30px;height:30px}
 .learn p{margin:0;font-size:clamp(16px, 15.2px + .26vw, 19px);line-height:1.35;color:#F1EDF5}                        /* = .check .t */
-.bonus{display:flex;align-items:center;gap:16px;margin-top:clamp(16px,1.6vw,24px);padding:14px 22px 14px 14px;border-radius:18px;text-align:left} /* = .medals */
+.learn-bonus{display:flex;flex-direction:column;align-items:center}
+.bonus{display:flex;align-items:center;gap:16px;margin-top:clamp(16px,1.6vw,24px);padding:14px 22px 14px 14px;border-radius:18px;text-align:left} /* сертификат; = .medals */
 .bonus img{flex:none;width:88px;height:auto}
-.bonus-in{display:flex;flex-direction:column;gap:6px;min-width:0}                                                       /* = .md-in */
+.bonus-in{display:flex;flex-direction:column;gap:6px;min-width:0}
+.bonus-head{order:2;display:flex;flex-direction:column;gap:6px;max-width:420px;margin-top:12px;text-align:center}         /* = .md-in */
 .bonus-d{margin:0;font-size:16px;line-height:1.35;color:var(--text-2)}                                                   /* кегль .md-price */
+
+/* файл: стопка страниц; верхняя уходит поворотом вокруг левого края (transform и opacity, без размытия) */
+.file{position:relative;margin:0;width:min(330px, 100%);outline:none;-webkit-tap-highlight-color:transparent}
+.file-stack{position:relative;aspect-ratio:3/4;perspective:1800px;transform:rotate(-2.5deg);cursor:pointer;touch-action:pan-y}
+.file:focus-visible .file-stack{outline:2px solid var(--pink);outline-offset:8px;border-radius:18px}
+.fp{--d:0;position:absolute;inset:0;padding:clamp(16px, 1.5vw, 24px);border-radius:16px;overflow:hidden;
+  background:linear-gradient(165deg,#221C27 0%,#16121A 55%,#110E14 100%);border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 28px 60px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.08);transform-origin:0 50%;z-index:calc(20 - var(--d));
+  transform:translate(calc(var(--d) * 9px), calc(var(--d) * 9px)) rotate(calc(var(--d) * 1.6deg));
+  transition:transform .6s cubic-bezier(.32,.72,0,1),opacity .45s ease}
+.fp.is-gone{z-index:21;opacity:0;transform:rotateY(-112deg);pointer-events:none}
+.fp:not(.is-cur):not(.is-gone)>*{visibility:hidden}                    /* у нижних страниц видны только края, без текста */
+@keyframes fp-peek{0%,100%{transform:none}45%{transform:rotateY(-17deg)}}
+.file.peek .fp.is-cur{animation:fp-peek 1.1s cubic-bezier(.32,.72,0,1) 1}
+@media (prefers-reduced-motion:reduce){ .fp{transition:opacity .2s} .fp.is-gone{transform:none} .file.peek .fp{animation:none} }
+/* обложка */
+.fp-cover{background:radial-gradient(120% 70% at 100% 0%,rgba(255,42,127,.32),transparent 62%),linear-gradient(165deg,#2A1D2F 0%,#16111A 60%,#120E15 100%)}
+.fp-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+.fp-logo{--logo-size:22px;pointer-events:none}
+.fp-tag{padding:6px 10px;border-radius:999px;background:rgba(255,42,127,.18);border:1px solid rgba(255,42,127,.5);font:700 14px/1 var(--f-text);color:#fff;white-space:nowrap}
+.fp-title{position:relative;z-index:2;margin:clamp(18px, 2vw, 28px) 0 0;font:900 clamp(46px, 4.4vw, 70px)/.86 var(--f-disp);text-transform:uppercase;color:#fff}
+.fp-title span{display:block}
+.fp-title .pink{color:var(--pink);font-size:1.34em;filter:drop-shadow(0 0 18px rgba(255,42,127,.35))}
+.fp-sub{position:relative;z-index:2;margin:12px 0 0;max-width:12em;font:700 clamp(16px, 1.3vw, 20px)/1.25 var(--f-text);color:#ECE7F1}
+.fp-map{position:absolute;right:-18%;bottom:-9%;width:88%;height:auto;filter:drop-shadow(0 18px 28px rgba(0,0,0,.6))}
+.fp-pin{position:absolute;right:31%;bottom:31%;width:15%;height:auto;filter:drop-shadow(0 10px 12px rgba(0,0,0,.5))}
+/* страницы 2–3: открытые строки и спрятанные до бота */
+.fp-k{margin:0;font:800 clamp(16px, 1.3vw, 19px)/1.25 var(--f-text);color:#fff}
+.fp-k::before{content:"";display:block;width:36px;height:3px;margin-bottom:12px;border-radius:2px;background:var(--pink)}
+.fp-list{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:clamp(6px, .6vw, 9px)}
+.fp-list li{display:grid;grid-template-columns:30px 1fr;gap:8px;align-items:center;min-height:18px;font:600 14px/1.25 var(--f-text);color:#F1EDF5}
+.fp-list b{font:900 20px/1 var(--f-disp);color:var(--pink)}
+.fp-list .hid b{color:rgba(255,255,255,.34)}
+.fp-list .hid i,.fp-step i{display:block;height:9px;width:var(--w, 82%);border-radius:5px;background:linear-gradient(90deg,rgba(255,255,255,.22),rgba(255,255,255,.07))}
+.fp-lock{position:absolute;left:50%;bottom:clamp(14px, 1.4vw, 20px);transform:translateX(-50%);display:flex;align-items:center;gap:8px;margin:0;padding:9px 14px;border-radius:999px;white-space:nowrap;
+  background:rgba(16,13,20,.92);border:1px solid rgba(255,255,255,.22);box-shadow:0 10px 24px rgba(0,0,0,.5);font:700 14px/1 var(--f-text);color:#fff}
+.fp-lock svg{width:16px;height:16px;flex:none}
+.fp-steps{display:flex;flex-direction:column;gap:12px;margin-top:18px}
+.fp-step{display:grid;grid-template-columns:34px 1fr;gap:7px 10px;padding:12px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
+.fp-step b{grid-row:1 / 3;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:rgba(255,42,127,.18);border:1px solid rgba(255,42,127,.5);font:900 18px/1 var(--f-disp);color:#fff}
+.fp-step i.s{--w:56%;opacity:.7}
+/* последняя страница */
+.fp-end{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;
+  background:radial-gradient(90% 60% at 50% 30%,rgba(255,42,127,.3),transparent 70%),linear-gradient(165deg,#241A28,#120E15)}
+.fp-gift{width:44%;height:auto;filter:drop-shadow(0 20px 26px rgba(0,0,0,.6))}
+.fp-end-t{margin:0;max-width:9em;font:900 clamp(28px, 2.7vw, 40px)/.95 var(--f-disp);text-transform:uppercase;color:#fff}
+.fp-tg{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--pink);box-shadow:0 10px 28px rgba(255,42,127,.45)}
+.fp-tg svg{width:26px;height:26px}
+/* кнопки листания */
+.file-ctrl{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:16px}
+.file-btn{display:grid;place-items:center;width:44px;height:44px;padding:0;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);cursor:pointer;transition:background .2s,opacity .2s}
+.file-btn svg{width:18px;height:18px}
+.file-btn--prev svg{transform:scaleX(-1)}
+.file-btn:disabled{opacity:.35;cursor:default}
+@media (hover:hover){ .file-btn:not(:disabled):hover{background:rgba(255,255,255,.16)} }
+.file-count{min-width:52px;text-align:center;font:600 15px/1 var(--f-text);color:var(--text-2)}
+.file-count b{color:#fff;font-weight:800}
+/* маленькая обложка того же файла — в финале вместо подарка */
+.file-mini{position:relative;flex:none;width:86px;aspect-ratio:3/4;padding:10px 9px;border-radius:10px;transform:rotate(-4deg);overflow:hidden;
+  background:radial-gradient(120% 70% at 100% 0%,rgba(255,42,127,.32),transparent 62%),linear-gradient(165deg,#2A1D2F,#120E15);
+  border:1px solid rgba(255,255,255,.18);box-shadow:0 14px 28px rgba(0,0,0,.5);font:900 18px/.9 var(--f-disp);text-transform:uppercase;color:#fff}
+.file-mini span{display:block}
+.file-mini .pink{color:var(--pink);font-size:1.3em}
+.file-mini img{position:absolute;right:8px;bottom:6px;width:26%;height:auto}
+@media (max-width:1099px){ .learn-wrap{grid-template-columns:minmax(0,1fr)} .learn-bonus{margin-top:10px} }
 @media (max-width:767px){
-  .learn-grid{grid-template-columns:minmax(0,1fr);gap:10px}
-  .learn{padding:13px 14px;gap:12px;grid-template-columns:26px 1fr}
-  .learn svg{width:26px;height:26px}
+  .learn-grid{gap:4px}
+  .learn-grid .learn{padding:6px 0;gap:12px;grid-template-columns:24px 1fr;background:none;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none} /* телефон: строки без стекла — короче и легче */
+  .learn svg{width:24px;height:24px}
   .learn p{font-size:16px}
+  .file{width:min(78vw, 310px)}
+  .fp{padding:16px}
+  .fp-top{justify-content:flex-start}
+  .fp-list{gap:3px;margin-top:10px}
+  .fp-list .hid{min-height:16px}
+  .fp-k::before{margin-bottom:9px}
+  .fp-title{font-size:44px}
+  .file-mini{width:64px;padding:8px 7px;font-size:14px}
   .bonus{align-items:flex-start;gap:12px;padding:14px 16px 14px 12px}
   .bonus img{width:64px}
 }
@@ -76,11 +165,43 @@ html[data-hook="home"] .hero [data-hook-for="home"]{display:block}
 /* ---------- 2. что будет на мини-курсе ---------- */
 .les-grid{list-style:none;margin:clamp(30px, 22px + 2vw, 52px) 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px, 1.6vw, 22px)} /* = .inv, 2 колонки */
 .les{align-items:stretch;text-align:left}
-.les-art{position:relative;height:clamp(150px, 15vw, 226px);display:flex;align-items:flex-end;justify-content:center;gap:4%}   /* высота .skill-art */
-.les-art img{max-height:100%;width:auto;max-width:100%;filter:drop-shadow(0 22px 22px rgba(0,0,0,.6))}                 /* тень .skill-art */
-.les-art .old{max-width:46%;filter:saturate(.55) brightness(.82) drop-shadow(0 26px 30px rgba(0,0,0,.65))}               /* = .era-obj--old */
-.les-art .new{max-width:46%;filter:drop-shadow(0 26px 36px rgba(0,0,0,.55)) drop-shadow(0 0 40px rgba(255,42,127,.25))} /* = .era-obj--new */
-.les-art .ic{max-width:18%;max-height:62%}
+/* кадр урока (Вася 17.10): стоп-кадр видео — слайд урока, Никита рассказывает и показывает; нажатие ведёт в бота */
+.les-art.lv{position:relative;display:block;aspect-ratio:16/9;border-radius:14px;overflow:hidden;container-type:inline-size;text-decoration:none;color:#fff;
+  background:radial-gradient(90% 70% at 18% 0%,rgba(255,42,127,.17),transparent 60%),linear-gradient(160deg,#1C1720 0%,#120F15 100%);border:1px solid rgba(255,255,255,.14)}
+.lv img{filter:drop-shadow(0 10px 14px rgba(0,0,0,.55))}
+.lv-scr{position:absolute;inset:0;padding:5.5cqw 6cqw;display:flex;flex-direction:column;align-items:flex-start;gap:3cqw}
+.lv-k{max-width:58%;font:900 6.6cqw/.92 var(--f-disp);text-transform:uppercase;color:#fff}
+.lv-k b{color:var(--pink);font-weight:900}
+.lv-k--math{max-width:62%;font-size:8.4cqw}
+.lv-note{position:relative;z-index:2;margin-top:auto;padding:1.3cqw 2.4cqw;border-radius:99px;background:rgba(255,42,127,.2);border:1px solid rgba(255,42,127,.5);font:700 3.2cqw/1.1 var(--f-text);color:#fff;white-space:nowrap}
+.lv-note--top{margin-top:0}
+.lv-cmp{display:flex;align-items:flex-end;gap:3cqw;width:52%}
+.lv-cmp-i{display:flex;flex-direction:column;align-items:center;gap:1.4cqw;width:48%}
+.lv-cmp-i img{width:100%;height:auto}
+.lv-cmp-i .old{filter:saturate(.5) brightness(.8) drop-shadow(0 10px 14px rgba(0,0,0,.6))}                         /* = .era-obj--old */
+.lv-cmp-i .new{filter:drop-shadow(0 10px 16px rgba(0,0,0,.55)) drop-shadow(0 0 20px rgba(255,42,127,.25))}         /* = .era-obj--new */
+.lv-cmp-i i,.lv-ics i{font:700 2.9cqw/1.1 var(--f-text);font-style:normal;color:var(--text-2);text-align:center}
+.lv-ics{display:flex;gap:1.6cqw;width:56%;margin:auto 0}
+.lv-ics span{display:flex;flex-direction:column;align-items:center;gap:1.4cqw;width:20%}
+.lv-ics img{width:100%;height:auto}
+.lv-ics i{font-size:2.4cqw}
+.lv-map{position:absolute;left:2cqw;bottom:-4cqw;width:44cqw}
+.lv-map img{width:100%;height:auto}
+.lv-map .lv-pin{position:absolute;left:46%;top:-4%;width:15%}
+.lv-host{position:absolute;right:-7cqw;bottom:0;height:92%;width:auto;filter:drop-shadow(-8px 10px 20px rgba(0,0,0,.6));
+  -webkit-mask-image:linear-gradient(0deg,transparent 0,#000 18%);mask-image:linear-gradient(0deg,transparent 0,#000 18%)}
+.lv--share .lv-build{position:absolute;left:8cqw;bottom:-9cqw;width:58cqw;height:auto}
+.lv-k{position:relative;z-index:2}
+.lv-face{position:absolute;right:4cqw;bottom:7cqw;width:21cqw;height:21cqw;border-radius:50%;object-fit:cover;border:2px solid var(--pink);box-shadow:0 8px 20px rgba(0,0,0,.55)}
+.lv-ui{position:absolute;inset:0;pointer-events:none}
+.lv-play{position:absolute;left:50%;top:50%;width:13cqw;height:13cqw;margin:-6.5cqw 0 0 -6.5cqw;border-radius:50%;display:grid;place-items:center;
+  background:rgba(16,13,20,.62);border:1.5px solid rgba(255,255,255,.75);box-shadow:0 8px 24px rgba(0,0,0,.45);transition:transform .22s cubic-bezier(.22,1.6,.36,1),background .2s}
+.lv-play svg{width:46%;height:46%;margin-left:6%}
+.lv-bar{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.18)}
+.lv-bar i{display:block;height:100%;width:var(--p);background:var(--pink)}
+@media (hover:hover){ .lv:hover .lv-play{transform:scale(1.08);background:rgba(255,42,127,.85)} }
+.lv:focus-visible{outline:2px solid var(--pink);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){ .lv-play{transition:none} }
 .les .mn-k{margin-top:14px}
 .les .slot-t{margin-top:8px}
 /* результат урока — главное в карточке (Вася 17.10): розовая подпись, крупный белый текст, тонированная плашка */
@@ -88,13 +209,13 @@ html[data-hook="home"] .hero [data-hook-for="home"]{display:block}
   font:600 clamp(16px, 15px + .3vw, 19px)/1.4 var(--f-text);color:#fff}
 .les .lv-res b{display:block;margin-bottom:5px;font:700 14px/1.2 var(--f-text);letter-spacing:.16em;text-transform:uppercase;color:var(--pink)} /* = .mn-k */
 .les .slot-d{max-width:none;margin-top:12px;color:var(--text-3)}
+@media (min-width:1280px){ .les-grid{grid-template-columns:repeat(4,minmax(0,1fr))} .les .slot-t{font-size:clamp(22px, 1.6vw, 27px)} }   /* все 4 урока в ряд */
 .les-cta{display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin-top:clamp(28px,20px + 2vw,48px)}
 .les-cta .note{max-width:560px}
 .cert{max-width:660px}
 @media (max-width:767px){
   .les-grid{margin-top:22px;gap:12px}
   .les-grid.hscroll .slot{flex:none;width:86vw;max-width:380px;scroll-snap-align:start;padding:12px 12px 18px}      /* = .inv .slot */
-  .les-art{height:150px}
   .les .slot-d{display:none}                                                                                     /* телефон: только название и результат */
   .les-cta .btn{display:flex;width:100%}
   .les-cta .btn .btn-label{flex:1;text-align:center;padding-right:0}
@@ -131,14 +252,12 @@ html[data-hook="home"] .hero [data-hook-for="home"]{display:block}
 
 /* ---------- 4. начни сегодня и вопросы ---------- */
 .final-mini .mission-next{display:flex;align-items:center;gap:16px;text-align:left}
-.final-mini .mission-next img{flex:none;width:96px;height:auto}
 .final-mini .btn{margin-top:clamp(28px, 3vw, 44px)}
 .final-mini p.note{margin-top:12px;max-width:560px}
 .faq-c{max-width:860px;margin:0 auto}
 .faq-cta{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:clamp(32px, 3vw, 48px);text-align:center}
 @media (max-width:767px){
   .final-mini .mission-next{align-items:center}
-  .final-mini .mission-next img{width:64px}
   .final-mini .btn,.faq-cta .btn{display:flex;width:100%}
   .final-mini .btn .btn-label,.faq-cta .btn .btn-label{flex:1;text-align:center;padding-right:0}
 }

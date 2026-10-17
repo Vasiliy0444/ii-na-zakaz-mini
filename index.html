@@ -20,11 +20,11 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preload" href="assets/img/bg_hero_d.webp" as="image" media="(min-width: 768px)">
 <script id="hook-head">/* до отрисовки: какой заголовок показать по метке utm_content (логика = pickHook из js/hooks.js) */
-(function(){try{var w=(new URLSearchParams(location.search).get('utm_content')||'').toLowerCase().split(/[^a-z0-9]+/).filter(Boolean),k=null,i=w.indexOf('math');if(i!==-1){k=w[i+1]==='a'?'math_a':'math_b';}else{var keys=['compare','clients','zero','home','now'];for(var j=0;j<keys.length;j++){if(w.indexOf(keys[j])!==-1){k=keys[j];break;}}}if(k){document.documentElement.setAttribute('data-hook',k);}}catch(e){}})();</script>
+(function(){try{var w=(new URLSearchParams(location.search).get('utm_content')||'').toLowerCase().split(/[^a-z0-9]+/).filter(Boolean),k=null,i=w.indexOf('math');if(i!==-1){k=w[i+1]==='a'?'math_a':'math_b';}else{var keys=['compare','clients','zero','home','now'];for(var j=0;j<keys.length;j++){if(w.indexOf(keys[j])!==-1){k=keys[j];break;}}}if(k){document.documentElement.setAttribute('data-hook',k);}var h=(new URLSearchParams(location.search).get('hero')||'').toLowerCase();if(h==='b'||h==='c'){document.documentElement.setAttribute('data-hero',h);}}catch(e){}})();</script>
 <link rel="stylesheet" href="css/fonts.css?v=35aa182b">
 <link rel="stylesheet" href="css/style.css?v=73daaa35">
-<link rel="stylesheet" href="css/mini.css?v=375e15e9">
-<script type="module" src="js/main.js?v=f08489b4"></script>
+<link rel="stylesheet" href="css/mini.css?v=68906904">
+<script type="module" src="js/main.js?v=c279ed8f"></script>
 </head>
 <body>
 <div class="page" id="page">
@@ -65,7 +65,9 @@
         <div class="hero-scene">
           <div class="glow hero-glow" aria-hidden="true"></div>
           <div class="hero-person hero-person--laptop">
-            <img src="assets/img/nikita_laptop.webp" alt="Никита Попко за ноутбуком собирает сайт" width="1200" height="1478">
+            <img class="hv hv-a" src="assets/img/nikita_desk.webp" alt="Никита Попко за ноутбуком собирает сайт" width="1200" height="1500" fetchpriority="high">
+            <img class="hv hv-b" src="assets/img/nikita_client.webp" alt="Никита Попко показывает готовый сайт владельцу пекарни" width="1400" height="1400" loading="lazy">
+            <img class="hv hv-c" src="assets/img/nikita_orders.webp" alt="Никита Попко с ноутбуком, рядом переписка с заказом, бот и монеты" width="1200" height="1500" loading="lazy">
           </div>
         </div>
 
@@ -75,26 +77,73 @@
   </div>
 </section>
 
-<!-- ============ 1а. НА МИНИ-КУРСЕ + БОНУС (Superdesign: band_after_hero_1) ============ -->
+<!-- ============ 1а. НА МИНИ-КУРСЕ + БОНУС-«ФАЙЛ» (правки Васи 17.10: файл бонуса справа, листается) ============ -->
 <section class="sec s-black learn-sec" id="learn" data-b="1.5" style="--pc:#0B090D">
   <div class="surf tex-grid" aria-hidden="true">
     <div class="glows"><div class="glow" style="left:55%;top:10%;width:min(900px,90vw);height:80%;--a:.12"></div></div>
   </div>
-  <div class="wrap">
-    <p class="mission-kick" data-i18n="b1.learn_k">На мини-курсе:</p>
-    <ul class="learn-grid" role="list">
-      <li class="learn gl"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><circle cx="16" cy="16" r="13.5"/><path d="M10 16.5l4 4 8-9" stroke-linecap="round" stroke-linejoin="round"/></svg><p data-i18n="b1.l1">Покажем, из чего состоит профессия AI-специалиста и за что бизнес платит $300 за заказ</p></li>
-      <li class="learn gl"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><circle cx="16" cy="16" r="13.5"/><path d="M10 16.5l4 4 8-9" stroke-linecap="round" stroke-linejoin="round"/></svg><p data-i18n="b1.l2">Разберём 5 онлайн-услуг на нейросетях и подскажем, с какой начать тебе</p></li>
-      <li class="learn gl"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><circle cx="16" cy="16" r="13.5"/><path d="M10 16.5l4 4 8-9" stroke-linecap="round" stroke-linejoin="round"/></svg><p data-i18n="b1.l3">Дадим план выхода на $1000: сколько заказов, по какой цене и сколько вечеров в неделю</p></li>
-      <li class="learn gl"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><circle cx="16" cy="16" r="13.5"/><path d="M10 16.5l4 4 8-9" stroke-linecap="round" stroke-linejoin="round"/></svg><p data-i18n="b1.l4">Найдёшь 3 компании в своём районе и на практическом уроке соберёшь сайт для одной из них</p></li>
-    </ul>
-    <div class="bonus gl">
-      <img src="assets/img/gift.webp" alt="" width="700" height="785" loading="lazy">
-      <div class="bonus-in">
+  <div class="wrap learn-wrap">
+    <div class="learn-copy">
+      <p class="mission-kick" data-i18n="b1.learn_k">На мини-курсе:</p>
+      <ul class="learn-grid" role="list">
+        <li class="learn gl"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><circle cx="16" cy="16" r="13.5"/><path d="M10 16.5l4 4 8-9" stroke-linecap="round" stroke-linejoin="round"/></svg><p data-i18n="b1.l1">Покажем, из чего состоит профессия AI-специалиста и за что бизнес платит $300 за заказ</p></li>
+        <li class="learn gl"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><circle cx="16" cy="16" r="13.5"/><path d="M10 16.5l4 4 8-9" stroke-linecap="round" stroke-linejoin="round"/></svg><p data-i18n="b1.l2">Разберём 5 онлайн-услуг на нейросетях и подскажем, с какой начать тебе</p></li>
+        <li class="learn gl"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><circle cx="16" cy="16" r="13.5"/><path d="M10 16.5l4 4 8-9" stroke-linecap="round" stroke-linejoin="round"/></svg><p data-i18n="b1.l3">Дадим план выхода на $1000: сколько заказов, по какой цене и сколько вечеров в неделю</p></li>
+        <li class="learn gl"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><circle cx="16" cy="16" r="13.5"/><path d="M10 16.5l4 4 8-9" stroke-linecap="round" stroke-linejoin="round"/></svg><p data-i18n="b1.l4">Найдёшь 3 компании в своём районе и на практическом уроке соберёшь сайт для одной из них</p></li>
+      </ul>
+    </div>
+    <div class="learn-bonus">
+      <div class="bonus-in bonus-head">
         <p class="mn-k" data-i18n="b1.bonus_k">Бонус:</p>
         <p class="md-h" data-i18n="b1.bonus_t">🎁 «Топ-10 каналов, где найти клиентов на ИИ-услуги».</p>
         <p class="bonus-d" data-i18n="b1.bonus_d">Придёт вместе с первым уроком.</p>
       </div>
+      <figure class="file" data-file tabindex="0" aria-roledescription="листалка" aria-label="Бонус «Топ-10 каналов, где найти клиентов на ИИ-услуги»: превью страниц">
+        <div class="file-stack">
+          <div class="fp fp-cover" aria-hidden="false">
+            <div class="fp-top"><span class="logo fp-logo"><span class="l-big">ИИ</span><span class="l-small">НА ЗАКАЗ</span></span><span class="fp-tag" data-i18n="b1.file_tag">Бонус мини-курса</span></div>
+            <p class="fp-title"><span class="pink">Топ-10</span> <span>каналов</span></p>
+            <p class="fp-sub" data-i18n="b1.file_sub">где найти клиентов на ИИ-услуги</p>
+            <img class="fp-map" src="assets/img/map_iso.webp" alt="" width="1500" height="1168" loading="lazy">
+            <img class="fp-pin" src="assets/img/pin.webp" alt="" width="220" height="330" loading="lazy">
+          </div>
+          <div class="fp" aria-hidden="true">
+            <p class="fp-k" data-i18n="b1.file_p2">Где малый бизнес ищет исполнителей</p>
+            <ol class="fp-list" role="list">
+              <li><b>01</b><span data-i18n="b1.ch1">2GIS и Google Карты: компании без сайта</span></li>
+              <li><b>02</b><span data-i18n="b1.ch2">Uzum Market: карточки, фото и видео</span></li>
+              <li><b>03</b><span data-i18n="b1.ch3">OLX, раздел «Работа»</span></li>
+              <li><b>04</b><span data-i18n="b1.ch4">Telegram-каналы с разовыми задачами</span></li>
+              <li class="hid" style="--w:78%"><b>05</b><i></i></li>
+              <li class="hid" style="--w:62%"><b>06</b><i></i></li>
+              <li class="hid" style="--w:84%"><b>07</b><i></i></li>
+              <li class="hid" style="--w:56%"><b>08</b><i></i></li>
+              <li class="hid" style="--w:72%"><b>09</b><i></i></li>
+              <li class="hid" style="--w:66%"><b>10</b><i></i></li>
+            </ol>
+            <p class="fp-lock"><svg class="lv-lock" viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="1.8" aria-hidden="true"><rect x="4" y="9" width="12" height="8.5" rx="2"/><path d="M6.8 9V6.6a3.2 3.2 0 0 1 6.4 0V9"/></svg><span data-i18n="b1.file_lock">Откроется в боте</span></p>
+          </div>
+          <div class="fp" aria-hidden="true">
+            <p class="fp-k" data-i18n="b1.file_p3">С какого канала начать, если среди знакомых нет предпринимателей</p>
+            <div class="fp-steps">
+              <div class="fp-step"><b>1</b><i></i><i class="s"></i></div>
+              <div class="fp-step"><b>2</b><i></i><i class="s"></i></div>
+              <div class="fp-step"><b>3</b><i></i><i class="s"></i></div>
+            </div>
+            <p class="fp-lock"><svg class="lv-lock" viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="1.8" aria-hidden="true"><rect x="4" y="9" width="12" height="8.5" rx="2"/><path d="M6.8 9V6.6a3.2 3.2 0 0 1 6.4 0V9"/></svg><span data-i18n="b1.file_lock2">Откроется в боте</span></p>
+          </div>
+          <div class="fp fp-end" aria-hidden="true">
+            <img class="fp-gift" src="assets/img/gift.webp" alt="" width="700" height="785" loading="lazy">
+            <p class="fp-end-t" data-i18n="b1.file_end">Придёт вместе с первым уроком</p>
+            <span class="fp-tg"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"><path d="M21 4.5L3.5 11.2l5.6 2.1 2.1 6.2 3-3.9 4.6 3.4z"/><path d="M9.1 13.3l8.3-6.1"/></svg></span>
+          </div>
+        </div>
+        <figcaption class="file-ctrl">
+          <button class="file-btn file-btn--prev" type="button" data-file-prev aria-label="Предыдущая страница"><svg viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4l6 6-6 6"/></svg></button>
+          <span class="file-count" aria-live="polite"><b>1</b> / 4</span>
+          <button class="file-btn" type="button" data-file-next aria-label="Следующая страница"><svg viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4l6 6-6 6"/></svg></button>
+        </figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -112,28 +161,64 @@
     <div class="hs-wrap" style="--fade:#190C1B">
       <ul class="les-grid hscroll" role="list">
         <li class="slot les">
-          <div class="les-art" aria-hidden="true"><img class="old" src="assets/img/old_desk.webp" alt="" loading="lazy"><img class="new" src="assets/img/neon_laptop.webp" alt="" loading="lazy"></div>
+          <a class="les-art lv" href="https://t.me/" data-cta data-track="cta" data-place="lesson1" aria-label="Урок 1 — смотреть в Telegram">
+            <span class="lv-scr" aria-hidden="true">
+              <span class="lv-k" data-i18n="b2.s1">Что сейчас приносит деньги</span>
+              <span class="lv-cmp"><span class="lv-cmp-i"><img class="old" src="assets/img/old_desk.webp" alt="" loading="lazy"><i data-i18n="b2.s1a">Смены, такси</i></span><span class="lv-cmp-i"><img class="new" src="assets/img/neon_laptop.webp" alt="" loading="lazy"><i data-i18n="b2.s1b">Онлайн-профессия</i></span></span>
+              <span class="lv-note" data-i18n="b2.s1c">Сайт за вечер — 2,5⁠–⁠5 млн сум</span>
+            </span>
+            <img class="lv-host" src="assets/img/nikita_talk.webp" alt="" width="620" height="602" loading="lazy">
+            <span class="lv-ui" aria-hidden="true"><span class="lv-play"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></span><span class="lv-bar"><i style="--p:36%"></i></span></span>
+          </a>
           <span class="mn-k" data-i18n="b2.n1">Урок 1</span>
           <p class="slot-t" data-i18n="b2.t1">Онлайн-профессия AI-специалиста: новая эра</p>
           <p class="lv-res" data-i18n="b2.r1"><b>Результат:</b> поймёшь, на чём сегодня реально зарабатывают и чем онлайн-профессия отличается от смен и такси.</p>
           <p class="slot-d" data-i18n="b2.d1">Сравним по цифрам, что сейчас приносит деньги: смены, такси, биржи, трейдинг — и онлайн-профессия. Покажем, почему нейросеть собирает сайт за вечер, а бизнес платит за него 2,5⁠–⁠5 млн сум.</p>
         </li>
         <li class="slot les">
-          <div class="les-art" aria-hidden="true"><img class="ic" src="assets/img/ic_site.webp" alt="" loading="lazy"><img class="ic" src="assets/img/ic_bot.webp" alt="" loading="lazy"><img class="ic" src="assets/img/ic_content.webp" alt="" loading="lazy"><img class="ic" src="assets/img/ic_reels.webp" alt="" loading="lazy"><img class="ic" src="assets/img/ic_design.webp" alt="" loading="lazy"></div>
+          <a class="les-art lv" href="https://t.me/" data-cta data-track="cta" data-place="lesson2" aria-label="Урок 2 — смотреть в Telegram">
+            <span class="lv-scr" aria-hidden="true">
+              <span class="lv-k" data-i18n="b2.s2">5 услуг AI-специалиста</span>
+              <span class="lv-ics">
+                <span><img src="assets/img/ic_site.webp" alt="" loading="lazy"><i data-i18n="b2.s2a">Сайты</i></span>
+                <span><img src="assets/img/ic_bot.webp" alt="" loading="lazy"><i data-i18n="b2.s2b">Telegram-боты</i></span>
+                <span><img src="assets/img/ic_content.webp" alt="" loading="lazy"><i data-i18n="b2.s2c">Контент</i></span>
+                <span><img src="assets/img/ic_reels.webp" alt="" loading="lazy"><i data-i18n="b2.s2d">ИИ-рилсы</i></span>
+                <span><img src="assets/img/ic_design.webp" alt="" loading="lazy"><i data-i18n="b2.s2e">Дизайн</i></span>
+              </span>
+            </span>
+            <img class="lv-host" src="assets/img/nikita_talk.webp" alt="" width="620" height="602" loading="lazy">
+            <span class="lv-ui" aria-hidden="true"><span class="lv-play"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></span><span class="lv-bar"><i style="--p:58%"></i></span></span>
+          </a>
           <span class="mn-k" data-i18n="b2.n2">Урок 2</span>
           <p class="slot-t" data-i18n="b2.t2">5 услуг AI-специалиста</p>
           <p class="lv-res" data-i18n="b2.r2"><b>Результат:</b> выберешь одну услугу и перестанешь пробовать всё подряд.</p>
           <p class="slot-d" data-i18n="b2.d2">Сайты, Telegram-боты, контент, ИИ-рилсы и дизайн. Разберём, сколько платят за каждую услугу и с какой начать, если опыта нет.</p>
         </li>
         <li class="slot les">
-          <div class="les-art" aria-hidden="true"><img class="map" src="assets/img/map_iso.webp" alt="" loading="lazy"></div>
+          <a class="les-art lv" href="https://t.me/" data-cta data-track="cta" data-place="lesson3" aria-label="Урок 3 — смотреть в Telegram">
+            <span class="lv-scr" aria-hidden="true">
+              <span class="lv-k lv-k--math" data-i18n="b2.s3">3⁠–⁠4 заказа по $300 = <b>$1000</b></span>
+              <span class="lv-note lv-note--top" data-i18n="b2.s3a">Где искать первых заказчиков</span>
+              <span class="lv-map"><img src="assets/img/map_iso.webp" alt="" loading="lazy"><img class="lv-pin" src="assets/img/pin.webp" alt="" loading="lazy"></span>
+            </span>
+            <img class="lv-host" src="assets/img/nikita_talk.webp" alt="" width="620" height="602" loading="lazy">
+            <span class="lv-ui" aria-hidden="true"><span class="lv-play"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></span><span class="lv-bar"><i style="--p:24%"></i></span></span>
+          </a>
           <span class="mn-k" data-i18n="b2.n3">Урок 3</span>
           <p class="slot-t" data-i18n="b2.t3">Сколько зарабатывает AI-специалист</p>
           <p class="lv-res" data-i18n="b2.r3"><b>Результат:</b> план до первого заказа и 3 компании, которым можно предложить сайт.</p>
           <p class="slot-d" data-i18n="b2.d3">3⁠–⁠4 заказа по $300 — это $1000 в месяц. Посчитаем, сколько вечеров в неделю это займёт, где искать первых заказчиков и что им написать. Разберём цены на сайты в Ташкенте, чтобы не продешевить.</p>
         </li>
         <li class="slot les">
-          <div class="les-art" aria-hidden="true"><img src="assets/img/laptop_build.webp" alt="" loading="lazy"></div>
+          <a class="les-art lv lv--share" href="https://t.me/" data-cta data-track="cta" data-place="lesson4" aria-label="Практический урок — смотреть в Telegram">
+            <span class="lv-scr" aria-hidden="true">
+              <span class="lv-k" data-i18n="b2.s4">Сайт для твоей компании</span>
+              <img class="lv-build" src="assets/img/laptop_build.webp" alt="" loading="lazy">
+            </span>
+            <img class="lv-face" src="assets/img/nikita_face.webp" alt="" width="240" height="240" loading="lazy">
+            <span class="lv-ui" aria-hidden="true"><span class="lv-play"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></span><span class="lv-bar"><i style="--p:72%"></i></span></span>
+          </a>
           <span class="mn-k" data-i18n="b2.n4">Практика</span>
           <p class="slot-t" data-i18n="b2.t4">Практический урок</p>
           <p class="lv-res" data-i18n="b2.r4"><b>Результат:</b> готовый сайт и первое предложение владельцу компании.</p>
@@ -196,7 +281,7 @@
   <div class="wrap mission-in">
     <h2 class="h2 worn mission-h"><span class="line" data-i18n="b4.h2a">Начни с первого урока</span> <span class="line pink" data-i18n="b4.h2b">сегодня вечером</span></h2>
     <div class="mission-next gl">
-      <img src="assets/img/gift.webp" alt="" width="700" height="785" loading="lazy">
+      <div class="file-mini" aria-hidden="true"><span class="pink">Топ-10</span><span>каналов</span><img src="assets/img/pin.webp" alt="" width="220" height="330" loading="lazy"></div>
       <div>
         <span class="mn-k" data-i18n="b4.bonus_k">Бонус:</span>
         <p class="mn-t" data-i18n="b4.bonus_t">🎁 «Топ-10 каналов, где найти клиентов на ИИ-услуги».</p>

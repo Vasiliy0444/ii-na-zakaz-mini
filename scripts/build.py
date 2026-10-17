@@ -27,7 +27,10 @@ HEAD_HOOK_SCRIPT = (
     "(function(){try{var w=(new URLSearchParams(location.search).get('utm_content')||'').toLowerCase().split(/[^a-z0-9]+/)"
     ".filter(Boolean),k=null,i=w.indexOf('math');if(i!==-1){k=w[i+1]==='a'?'math_a':'math_b';}else{var keys=['compare','clients','zero','home','now'];"
     "for(var j=0;j<keys.length;j++){if(w.indexOf(keys[j])!==-1){k=keys[j];break;}}}"
-    "if(k){document.documentElement.setAttribute('data-hook',k);}}catch(e){}})();</script>"
+    "if(k){document.documentElement.setAttribute('data-hook',k);}"
+    # вариант первого экрана для выбора (?hero=b|c), без метки — вариант a
+    "var h=(new URLSearchParams(location.search).get('hero')||'').toLowerCase();"
+    "if(h==='b'||h==='c'){document.documentElement.setAttribute('data-hero',h);}}catch(e){}})();</script>"
 )
 
 SHORT_WORDS = (

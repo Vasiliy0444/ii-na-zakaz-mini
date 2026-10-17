@@ -21,6 +21,7 @@ from playwright.sync_api import sync_playwright
 ROOT = Path(__file__).resolve().parent.parent
 VIEWS = [(1440, 900), (1024, 768), (768, 1024), (390, 844), (375, 667), (320, 568)]
 HOOKS = ["", "compare", "math_a", "math_b", "now", "zero", "clients", "home"]
+HERO_VARIANTS = ["b", "c"]  # варианты первого экрана на выбор (?hero=b|c): кнопка тоже в первом экране
 
 
 def serve() -> tuple[str, socketserver.TCPServer]:
@@ -91,6 +92,7 @@ def main() -> int:
                         problems.append(f"{tag}: в вопросах открыто {opened}")
                     small = pg.evaluate("""() => [...document.querySelectorAll('body *')].filter(el => {
                         if (![...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim())) return false;
+                        if (el.closest('.lv-scr')) return false;  // кадр урока — это картинка-скрин, мелкий текст на слайде допустим
                         const cs = getComputedStyle(el); if (cs.display === 'none' || cs.visibility === 'hidden') return false;
                         const r = el.getBoundingClientRect(); if (!r.width || !r.height) return false;
                         return parseFloat(cs.fontSize) < 14; }).map(el => el.className + ': ' + getComputedStyle(el).fontSize).slice(0, 5)""")
@@ -107,6 +109,20 @@ def main() -> int:
                         pg.screenshot(path=str(shots / f"{w}_00-first-screen.jpg"), type="jpeg", quality=85)
                 for e in errors:
                     problems.append(f"{tag}: {e}")
+                pg.close()
+            for hv in HERO_VARIANTS:
+                pg = ctx.new_page()
+                pg.goto(base + f"?hero={hv}", wait_until="networkidle")
+                pg.evaluate("document.fonts.ready")
+                v = pg.evaluate("() => ({b: document.querySelector('#cta-hero').getBoundingClientRect().bottom, vh: innerHeight, "
+                                "sw: document.documentElement.scrollWidth, vw: innerWidth, attr: document.documentElement.getAttribute('data-hero')})")
+                tag = f"{w}x{h} hero={hv}"
+                if v["attr"] != hv:
+                    problems.append(f"{tag}: data-hero={v['attr']}")
+                if v["b"] > v["vh"]:
+                    problems.append(f"{tag}: кнопка ниже первого экрана ({v['b']:.0f} > {v['vh']})")
+                if v["sw"] > v["vw"]:
+                    problems.append(f"{tag}: прокрутка вбок ({v['sw']} > {v['vw']})")
                 pg.close()
             ctx.close()
         br.close()

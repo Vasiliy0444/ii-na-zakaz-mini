@@ -22,6 +22,11 @@ https://npopko55-cmd.github.io/ii-na-zakaz/ (репозиторий github.com/n
   - `nikita_laptop` — Никита за ноутбуком; образцы `nikita_present`, `nikita_crossed`, `laptop_build`; выбран вариант 2 из 3.
   - `gift` — 3D-подарок; образцы `ic_site`, `medal_coin`; выбран вариант 2 из 2.
   - `certificate` — 3D-сертификат; образцы `medal_coin`, `shield`; выбран вариант 1 из 2.
+- **Картинки Higgsfield, 17.10.2026** — GPT Image 2.5, high, 2K, прозрачный фон, образцы `nikita_present`, `nikita_crossed` и 3D-предметы образца. 3 генерации по 2,75 кредита — 8,25 кредита (всего на лендинг 27,5).
+  - `nikita_desk` — Никита за столом, ноутбук повёрнут к нему, стол целиком (вариант A; заменил `nikita_laptop`: ноутбук смотрел наружу, стол обрезан).
+  - `nikita_client` — Никита показывает сайт владельцу пекарни (вариант B).
+  - `nikita_orders` — Никита с ноутбуком, рядом переписка, бот и монеты (вариант C).
+- **`nikita_talk`, `nikita_face`** — вырезаны из `nikita_present` образца для кадров уроков.
 - **`assets/og.jpg`** — снимок первого экрана, 1200×630.
 - **`js/attribution.js`** — из `websites/intensiv-site/src/lib/attribution.js` (метка в параметр start бота). Буква версии — `m`.
 - **Раскладки трёх новых блоков** — Superdesign MCP, по 2 варианта, все в `superdesign/`. Выбраны `band_after_hero_1`, `lessons_1`, `final_faq_1`.

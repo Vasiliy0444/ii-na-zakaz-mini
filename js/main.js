@@ -2,6 +2,7 @@
 // Части взяты из js/main.js страницы курса (коммит 453d85f): события dataLayer, лента со стрелкой, нижняя панель, аккордеон, block_view.
 // Метка для бота — js/attribution.js (из websites/intensiv-site). Заголовок под хук выбирает скрипт в <head>.
 import { buildBotUrl, buildStartPayload, hasUtm, readUtm, resolveUtm } from './attribution.js';
+import { initFiles } from './file.js';
 
 /* ================= НАСТРОЙКИ ================= */
 const BOT_USERNAME = ''; // имя бота мини-курса без @. Пусто — кнопки ведут на заглушку BOT_FALLBACK.
@@ -72,6 +73,9 @@ $$('.hs-wrap').forEach((wrap) => {
   list.addEventListener('scroll', upd, { passive: true });
   upd();
 });
+
+/* ---------- бонус-«файл»: листается (js/file.js) ---------- */
+initFiles(track);
 
 /* ---------- нижняя панель: после первого экрана; прячется, пока на экране другая кнопка ---------- */
 const dock = $('.dock');
