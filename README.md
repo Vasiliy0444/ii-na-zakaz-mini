@@ -1,6 +1,6 @@
 # ИИ на заказ — лендинг бесплатного мини-курса
 
-Страница: https://vasiliy0444.github.io/ii-na-zakaz-mini/ (закрыта от поисковиков — `noindex`).
+Страница: https://aibuyurtma.com/ (домен у Hostinger, файлы на GitHub Pages; старый адрес vasiliy0444.github.io/ii-na-zakaz-mini перекидывает сюда) (закрыта от поисковиков — `noindex`).
 Дизайн-система — страница курса «ИИ на заказ», откуда что взято — `SOURCE.md`.
 
 ## Как устроено
