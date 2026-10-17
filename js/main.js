@@ -5,7 +5,7 @@ import { buildBotUrl, buildStartPayload, hasUtm, readUtm, resolveUtm } from './a
 import { initFiles } from './file.js';
 
 /* ================= НАСТРОЙКИ ================= */
-const BOT_USERNAME = ''; // имя бота мини-курса без @. Пусто — кнопки ведут на заглушку BOT_FALLBACK.
+const BOT_USERNAME = 'uz_ai_school_bot'; // имя бота мини-курса без @ (Вася, 17.10.2026). Пусто — кнопки ведут на заглушку BOT_FALLBACK.
 const BOT_FALLBACK = 'https://t.me/';
 const LANDING_VERSION = 'm';
 const UTM_KEY = 'mini_utm';
@@ -58,9 +58,20 @@ window.__AB = { start: payload, hook, bot: Boolean(botUrl) };
 /* ---------- переключатель UZ/RU: метки рекламы и вариант экрана идут с посетителем ---------- */
 if (location.search) $$('.lang-sw a').forEach((a) => { a.href = a.getAttribute('href') + location.search; });
 
+/* ---------- пиксель Meta: Lead — нажатие кнопки в бота, один раз за загрузку страницы ---------- */
+// Базовый код пикселя — в <head>. Группы объявлений в Meta оптимизируются на это событие.
+let leadSent = false;
+function sendLead(place) {
+  if (leadSent || typeof window.fbq !== 'function') return;
+  leadSent = true;
+  window.fbq('track', 'Lead', { content_name: 'mini_course', content_category: place });
+}
+
 document.addEventListener('click', (e) => {
   const a = e.target.closest('[data-track]');
   if (a) track('cta_click', { place: a.getAttribute('data-place') || '', start: payload });
+  const cta = e.target.closest('a[data-cta]');
+  if (cta) sendLead(cta.getAttribute('data-place') || '');
 });
 
 /* ---------- горизонтальная лента со стрелкой (телефон) ---------- */

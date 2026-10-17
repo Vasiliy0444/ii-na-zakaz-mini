@@ -21,10 +21,22 @@
 <link rel="preload" href="assets/img/bg_hero_d.webp" as="image" media="(min-width: 768px)">
 <script id="hook-head">/* до отрисовки: какой заголовок показать по метке utm_content (логика = pickHook из js/hooks.js) */
 (function(){try{var w=(new URLSearchParams(location.search).get('utm_content')||'').toLowerCase().split(/[^a-z0-9]+/).filter(Boolean),k=null,i=w.indexOf('math');if(i!==-1){k=w[i+1]==='a'?'math_a':'math_b';}else{var keys=['compare','clients','zero','home','now'];for(var j=0;j<keys.length;j++){if(w.indexOf(keys[j])!==-1){k=keys[j];break;}}}if(k){document.documentElement.setAttribute('data-hook',k);}var h=(new URLSearchParams(location.search).get('hero')||'').toLowerCase();if(h==='b'||h==='c'){document.documentElement.setAttribute('data-hero',h);}}catch(e){}})();</script>
+<script id="meta-pixel">/* Пиксель Meta: датасет UZ_course_pix (3217856658404769) в БМ кабинета «Uzbekustan RK». Lead — нажатие кнопки в бота, js/main.js.
+   Под автотестами (navigator.webdriver) пиксель не грузим, чтобы проверки не слали события в Meta. */
+if (!navigator.webdriver) {
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '3217856658404769');
+fbq('track', 'PageView');
+}
+</script>
 <link rel="stylesheet" href="css/fonts.css?v=35aa182b">
 <link rel="stylesheet" href="css/style.css?v=73daaa35">
 <link rel="stylesheet" href="css/mini.css?v=95d747bc">
-<script type="module" src="js/main.js?v=aff0dc4e"></script>
+<script type="module" src="js/main.js?v=4002aa96"></script>
 </head>
 <body>
 <div class="page" id="page">
