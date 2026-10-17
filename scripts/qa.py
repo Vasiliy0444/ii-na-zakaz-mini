@@ -21,7 +21,7 @@ from playwright.sync_api import sync_playwright
 ROOT = Path(__file__).resolve().parent.parent
 VIEWS = [(1440, 900), (1024, 768), (768, 1024), (390, 844), (375, 667), (320, 568)]
 HOOKS = ["", "compare", "math_a", "math_b", "now", "zero", "clients", "home"]
-HERO_VARIANTS = ["b", "c"]  # варианты первого экрана на выбор (?hero=b|c): кнопка тоже в первом экране
+HERO_VARIANTS = ["hero=b", "hero=c", "usp=b", "usp=c"]  # варианты первого экрана на выбор: кнопка тоже в первом экране
 
 
 def serve() -> tuple[str, socketserver.TCPServer]:
@@ -112,13 +112,13 @@ def main() -> int:
                 pg.close()
             for hv in HERO_VARIANTS:
                 pg = ctx.new_page()
-                pg.goto(base + f"?hero={hv}", wait_until="networkidle")
+                pg.goto(base + f"?{hv}", wait_until="networkidle")
                 pg.evaluate("document.fonts.ready")
                 v = pg.evaluate("() => ({b: document.querySelector('#cta-hero').getBoundingClientRect().bottom, vh: innerHeight, "
-                                "sw: document.documentElement.scrollWidth, vw: innerWidth, attr: document.documentElement.getAttribute('data-hero')})")
-                tag = f"{w}x{h} hero={hv}"
-                if v["attr"] != hv:
-                    problems.append(f"{tag}: data-hero={v['attr']}")
+                                "sw: document.documentElement.scrollWidth, vw: innerWidth, attr: document.documentElement.getAttribute('data-' + location.search.slice(1).split('=')[0])})")
+                tag = f"{w}x{h} {hv}"
+                if v["attr"] != hv.split("=")[1]:
+                    problems.append(f"{tag}: атрибут варианта={v['attr']}")
                 if v["b"] > v["vh"]:
                     problems.append(f"{tag}: кнопка ниже первого экрана ({v['b']:.0f} > {v['vh']})")
                 if v["sw"] > v["vw"]:
