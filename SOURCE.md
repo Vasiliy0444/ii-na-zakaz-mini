@@ -10,7 +10,7 @@ https://npopko55-cmd.github.io/ii-na-zakaz/ (репозиторий github.com/n
 |---|---|---|
 | Стили | `css/style.css`, `css/fonts.css` | байт в байт с коммитом 453d85f: `shasum -a 256 css/style.css` → `73daaa35…`, `css/fonts.css` → `35aa182b…` |
 | Шрифты | `assets/fonts/*.woff2` | лицензия — `assets/fonts/OFL.txt` |
-| Картинки | `assets/img/`: `bg_hero_*`, `bg_desk_*`, `bill_*`, `nikita_crossed`, `nikita_phone`, `nikita_present`, `ic_*`, `map_iso`, `pin`, `old_desk`, `neon_laptop`, `laptop_build`, `medal_coin`, `shield` | имена как у образца |
+| Картинки | `assets/img/`: `bg_hero_*`, `bg_desk_*`, `bill_*`, `nikita_phone`, `nikita_present`, `ic_*`, `map_iso`, `pin`, `old_desk`, `neon_laptop`, `laptop_build`, `medal_coin`, `shield` | имена как у образца |
 | Рваные края, силуэт города, иконки | `src/parts.json` | вырезаны из `index.html` образца |
 | Иконки сайта | `assets/favicon-64.png`, `assets/apple-touch-icon.png` | — |
 
@@ -28,7 +28,8 @@ https://npopko55-cmd.github.io/ii-na-zakaz/ (репозиторий github.com/n
   - `nikita_client` — Никита показывает сайт владельцу пекарни (вариант B).
   - `nikita_orders` — Никита с ноутбуком, рядом переписка, бот и монеты (вариант C).
 - **`nikita_talk`, `nikita_face`** — вырезаны из `nikita_present` образца для кадров уроков.
-- **`assets/og.jpg`** — снимок первого экрана, 1200×630.
+- **Фото Никиты**, 21.10.2026 — из архива Никиты «Мои фото для узбекистана» (Telegram, 20.10): IMG_4044 (май 2024) на первый экран, сторис 03.08.2024 с микрофоном — в «Кто ведёт». Фон вырезан Vision в macOS, обработка «неон-контур» выбрана Васей из пяти. Файлы `nikita_neon_phone`, `nikita_neon_mic`; заменили нарисованные `nikita_desk` и `nikita_crossed` (удалены с сайта). Исходники и скрипты — `research/13-lending-intensiva/фото-никиты/`.
+- **`assets/og.jpg`** — снимок первого экрана, 1200×630 (21.10.2026 переснят с фото Никиты, русская версия).
 - **`js/attribution.js`** — из `websites/intensiv-site/src/lib/attribution.js` (метка в параметр start бота). Буква версии — `m`.
 - **Раскладки трёх новых блоков** — Superdesign MCP, по 2 варианта, все в `superdesign/`. Выбраны `band_after_hero_1`, `lessons_1`, `final_faq_1`.
 - **Тексты** — один в один из `АКТУАЛЬНЫЙ-ЛЕНДИНГ_мини-курс_RU.docx`, согласован 11.10.2026. Сверку делает `scripts/check-texts.mjs`.

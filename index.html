@@ -20,7 +20,7 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preload" href="assets/img/bg_hero_d.webp" as="image" media="(min-width: 768px)">
 <script id="hook-head">/* до отрисовки: какой заголовок показать по метке utm_content (логика = pickHook из js/hooks.js) */
-(function(){try{var w=(new URLSearchParams(location.search).get('utm_content')||'').toLowerCase().split(/[^a-z0-9]+/).filter(Boolean),k=null,i=w.indexOf('math');if(i!==-1){k=w[i+1]==='a'?'math_a':'math_b';}else{var keys=['compare','clients','zero','home','now'];for(var j=0;j<keys.length;j++){if(w.indexOf(keys[j])!==-1){k=keys[j];break;}}}if(k){document.documentElement.setAttribute('data-hook',k);}var h=(new URLSearchParams(location.search).get('hero')||'').toLowerCase();if(h==='b'||h==='c'){document.documentElement.setAttribute('data-hero',h);}var ph=(new URLSearchParams(location.search).get('photo')||'').toLowerCase();if(['real','neon','night','duo','paint'].indexOf(ph)!==-1){document.documentElement.setAttribute('data-photo',ph);}}catch(e){}})();</script>
+(function(){try{var w=(new URLSearchParams(location.search).get('utm_content')||'').toLowerCase().split(/[^a-z0-9]+/).filter(Boolean),k=null,i=w.indexOf('math');if(i!==-1){k=w[i+1]==='a'?'math_a':'math_b';}else{var keys=['compare','clients','zero','home','now'];for(var j=0;j<keys.length;j++){if(w.indexOf(keys[j])!==-1){k=keys[j];break;}}}if(k){document.documentElement.setAttribute('data-hook',k);}var h=(new URLSearchParams(location.search).get('hero')||'').toLowerCase();if(h==='b'||h==='c'){document.documentElement.setAttribute('data-hero',h);}}catch(e){}})();</script>
 <script id="meta-pixel">/* Пиксель Meta: датасет UZ_course_pix (3217856658404769) в БМ кабинета «Uzbekustan RK». Lead — нажатие кнопки в бота, js/main.js.
    Под автотестами (navigator.webdriver) пиксель не грузим, чтобы проверки не слали события в Meta. */
 if (!navigator.webdriver) {
@@ -35,7 +35,7 @@ fbq('track', 'PageView');
 </script>
 <link rel="stylesheet" href="css/fonts.css?v=35aa182b">
 <link rel="stylesheet" href="css/style.css?v=73daaa35">
-<link rel="stylesheet" href="css/mini.css?v=2f14ebcf">
+<link rel="stylesheet" href="css/mini.css?v=8dbf0469">
 <script type="module" src="js/main.js?v=4002aa96"></script>
 </head>
 <body>
@@ -72,14 +72,9 @@ fbq('track', 'PageView');
         <div class="hero-scene">
           <div class="glow hero-glow" aria-hidden="true"></div>
           <div class="hero-person hero-person--laptop">
-            <img class="hv hv-a" src="assets/img/nikita_desk.webp" alt="Nikita Popko noutbukda sayt yasamoqda" width="896" height="1120" fetchpriority="high">
+            <img class="hv hv-a" src="assets/img/nikita_neon_phone.webp" alt="Nikita Popko mijoz bilan telefonda gaplashmoqda, qo‘lida noutbuk" width="1080" height="1350" fetchpriority="high">
             <img class="hv hv-b" src="assets/img/nikita_client.webp" alt="Nikita Popko novvoyxona egasiga tayyor saytni ko‘rsatmoqda" width="1400" height="1400" loading="lazy">
             <img class="hv hv-c" src="assets/img/nikita_orders.webp" alt="Nikita Popko noutbuk bilan, yonida buyurtma haqidagi yozishma, bot va tangalar" width="1200" height="1500" loading="lazy">
-            <img class="hv hv-r" data-look="real" src="assets/img/nikita_real_phone.webp" alt="Nikita Popko mijoz bilan telefonda gaplashmoqda, qo‘lida noutbuk" width="1080" height="1350" loading="lazy">
-            <img class="hv hv-r" data-look="neon" src="assets/img/nikita_neon_phone.webp" alt="Nikita Popko mijoz bilan telefonda gaplashmoqda, qo‘lida noutbuk" width="1080" height="1350" loading="lazy">
-            <img class="hv hv-r" data-look="night" src="assets/img/nikita_night_phone.webp" alt="Nikita Popko mijoz bilan telefonda gaplashmoqda, qo‘lida noutbuk" width="1080" height="1350" loading="lazy">
-            <img class="hv hv-r" data-look="duo" src="assets/img/nikita_duo_phone.webp" alt="Nikita Popko mijoz bilan telefonda gaplashmoqda, qo‘lida noutbuk" width="1080" height="1350" loading="lazy">
-            <img class="hv hv-r" data-look="paint" src="assets/img/nikita_paint_phone.webp" alt="Nikita Popko mijoz bilan telefonda gaplashmoqda, qo‘lida noutbuk" width="1080" height="1350" loading="lazy">
           </div>
         </div>
 
@@ -257,12 +252,7 @@ fbq('track', 'PageView');
     </div>
     <div class="mentor-art">
       <div class="glow" aria-hidden="true"></div>
-      <img class="cut cut--drawn" src="assets/img/nikita_crossed.webp" alt="Nikita Popko, AI yechimlari agentligi asoschisi" width="737" height="1560" loading="lazy">
-      <img class="cut cut--real" data-look="real" src="assets/img/nikita_real_mic.webp" alt="Nikita Popko, AI yechimlari agentligi asoschisi" width="800" height="1110" loading="lazy">
-      <img class="cut cut--real" data-look="neon" src="assets/img/nikita_neon_mic.webp" alt="Nikita Popko, AI yechimlari agentligi asoschisi" width="800" height="1110" loading="lazy">
-      <img class="cut cut--real" data-look="night" src="assets/img/nikita_night_mic.webp" alt="Nikita Popko, AI yechimlari agentligi asoschisi" width="800" height="1110" loading="lazy">
-      <img class="cut cut--real" data-look="duo" src="assets/img/nikita_duo_mic.webp" alt="Nikita Popko, AI yechimlari agentligi asoschisi" width="800" height="1110" loading="lazy">
-      <img class="cut cut--real" data-look="paint" src="assets/img/nikita_paint_mic.webp" alt="Nikita Popko, AI yechimlari agentligi asoschisi" width="800" height="1110" loading="lazy">
+      <img class="cut cut--photo" src="assets/img/nikita_neon_mic.webp" alt="Nikita Popko, AI yechimlari agentligi asoschisi" width="800" height="1110" loading="lazy">
     </div>
   </div>
 </section>

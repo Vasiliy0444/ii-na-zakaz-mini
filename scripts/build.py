@@ -35,10 +35,7 @@ HEAD_HOOK_SCRIPT = (
     "if(k){document.documentElement.setAttribute('data-hook',k);}"
     # вариант первого экрана для выбора (?hero=b|c), без метки — вариант a
     "var h=(new URLSearchParams(location.search).get('hero')||'').toLowerCase();"
-    "if(h==='b'||h==='c'){document.documentElement.setAttribute('data-hero',h);}"
-    # настоящие фото Никиты на первом экране и в «Кто ведёт» на проверку (?photo=real|neon|night|duo|paint), без метки — нарисованные
-    "var ph=(new URLSearchParams(location.search).get('photo')||'').toLowerCase();"
-    "if(['real','neon','night','duo','paint'].indexOf(ph)!==-1){document.documentElement.setAttribute('data-photo',ph);}}catch(e){}})();</script>"
+    "if(h==='b'||h==='c'){document.documentElement.setAttribute('data-hero',h);}}catch(e){}})();</script>"
 )
 
 SHORT_WORDS = (

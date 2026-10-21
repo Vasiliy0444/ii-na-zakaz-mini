@@ -21,14 +21,10 @@ html[data-hero="b"] .hero-person--laptop{aspect-ratio:1/1;width:clamp(600px, 50v
   mask-image:linear-gradient(0deg,transparent 0,#000 9%),linear-gradient(270deg,transparent 0,#000 7%);mask-composite:intersect}
 .hero .hv-c{-webkit-mask-image:linear-gradient(0deg,transparent 0,#000 9%),linear-gradient(90deg,transparent 0,#000 7%);-webkit-mask-composite:source-in;
   mask-image:linear-gradient(0deg,transparent 0,#000 9%),linear-gradient(90deg,transparent 0,#000 7%);mask-composite:intersect}
-/* настоящие фото Никиты на проверку (Вася 21.10, ?photo=real|neon|night|duo|paint): первый экран — звонок клиенту с ноутбуком, «Кто ведёт» — выступление с микрофоном.
-   Фото обрезано по бёдрам и по поясу — низ гасим длиннее, чем у нарисованных */
-.hero .hv-r,.lead-sec .cut--real{display:none}
-/* обработка фото под неон сайта (Вася 21.10, выбирает): real — как есть, neon — розовая кромка, night — цветной свет, duo — дуотон, paint — «под рисунок» */
-html[data-photo] .hero .hv-a,html[data-photo] .hero .hv-b,html[data-photo] .hero .hv-c,html[data-photo] .lead-sec .cut--drawn{display:none}
-html[data-photo="real"] .hero .hv-r[data-look="real"],html[data-photo="real"] .lead-sec .cut--real[data-look="real"],html[data-photo="neon"] .hero .hv-r[data-look="neon"],html[data-photo="neon"] .lead-sec .cut--real[data-look="neon"],html[data-photo="night"] .hero .hv-r[data-look="night"],html[data-photo="night"] .lead-sec .cut--real[data-look="night"],html[data-photo="duo"] .hero .hv-r[data-look="duo"],html[data-photo="duo"] .lead-sec .cut--real[data-look="duo"],html[data-photo="paint"] .hero .hv-r[data-look="paint"],html[data-photo="paint"] .lead-sec .cut--real[data-look="paint"]{display:block}
-.hero .hv-r{-webkit-mask-image:linear-gradient(0deg,transparent 0,#000 22%);mask-image:linear-gradient(0deg,transparent 0,#000 22%)}
-.lead-sec .cut--real{-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent 97%),linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%);-webkit-mask-composite:source-in;
+/* настоящие фото Никиты в обработке «неон-контур» (Вася 21.10): первый экран — звонок клиенту с ноутбуком, «Кто ведёт» — выступление с микрофоном.
+   Фото обрезано по бёдрам и по поясу — низ гасим длиннее, чем у нарисованных картинок образца */
+.hero .hv-a{-webkit-mask-image:linear-gradient(0deg,transparent 0,#000 22%);mask-image:linear-gradient(0deg,transparent 0,#000 22%)}
+.lead-sec .cut--photo{-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent 97%),linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%);-webkit-mask-composite:source-in;
   mask-image:linear-gradient(180deg,#000 70%,transparent 97%),linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%);mask-composite:intersect}
 
 /* хуки рекламы: все 8 заголовков в разметке, нужный выбирает скрипт в <head> атрибутом data-hook на <html> — без мигания и без JS для показа */
@@ -52,8 +48,8 @@ html[data-hook="home"] .hero [data-hook-for="home"]{display:block}
   .hero-copy>#cta-hero{order:4}.hero-copy>.hero-scene{order:5}
   .hero .btn{align-self:flex-start}
   .hero-person--laptop{left:calc(50% - 250px);top:0;width:500px}
-  /* настоящее фото выше нарисованного: сцена длиннее, чтобы растушёвка низа начиналась под ноутбуком, а не на нём */
-  html[data-photo] .hero-copy>.hero-scene{height:clamp(420px, 78vw, 640px)}
+  /* фото Никиты выше нарисованных картинок образца: сцена длиннее, чтобы растушёвка низа начиналась под ноутбуком, а не на нём */
+  .hero-copy>.hero-scene{height:clamp(420px, 78vw, 640px)}
 }
 @media (max-width:767px){
   .hero-copy{padding-top:20px}
@@ -64,7 +60,7 @@ html[data-hook="home"] .hero [data-hook-for="home"]{display:block}
   html[data-hero="b"] .hero-person--laptop{right:auto;left:-6px;width:calc(100% + 12px);top:-34px}
   html[data-hero="b"] .hero-copy{padding-top:0}
   html[data-hero="b"] .hero-copy>.hero-scene{order:-1;height:clamp(240px, 68vw, 290px);margin:0 calc(-1*var(--pad-x)) 4px}   /* B: картинка первой */
-  html[data-photo] .hero-copy>.hero-scene{height:clamp(380px, 112vw, 470px)}
+  .hero-copy>.hero-scene{height:clamp(380px, 112vw, 470px)}
   .dock-in{white-space:normal}
 }
 
@@ -261,15 +257,14 @@ html[data-hook="home"] .hero [data-hook-for="home"]{display:block}
   .lead-sec .mentor-art .cut{width:clamp(330px, 28vw, 420px);bottom:-150px}
   .regalia--team .rg{max-width:270px}
   .regalia--team .rg b{font-size:clamp(28px, 20px + 1.3vw, 40px)}
-  .regalia--team .rg2{top:40%}
+  .regalia--team .rg2{top:78%}   /* правая плашка — внизу на футболке: выше она закрывала бы лицо и микрофон */
   .regalia--team .rg3{top:66%}
-  /* настоящее фото по пояс: лицо и микрофон над плашками, правая плашка уходит вниз на футболку */
-  html[data-photo] .lead-sec .mentor-art .cut--real{width:clamp(380px, 31vw, 450px);left:18%;top:24px;bottom:auto;transform:none}
-  html[data-photo] .regalia--team .rg2{top:78%}
+  /* фото по пояс: лицо и микрофон над плашками */
+  .lead-sec .mentor-art .cut--photo{width:clamp(380px, 31vw, 450px);left:18%;top:24px;bottom:auto;transform:none}
 }
-/* планшет: настоящее фото по пояс ставим от верха колонки — привязка низа из образца рассчитана на рост в полный рост */
+/* планшет: фото по пояс ставим от верха колонки — привязка низа из образца рассчитана на фигуру в полный рост */
 @media (min-width:768px) and (max-width:1099px){
-  html[data-photo] .lead-sec .mentor-art .cut--real{top:clamp(90px, 14vw, 160px);bottom:auto;transform:translateX(-58%)}
+  .lead-sec .mentor-art .cut--photo{top:clamp(90px, 14vw, 160px);bottom:auto;transform:translateX(-58%)}
 }
 /* телефон: заголовок → Никита по пояс → имя на краю фото → регалии строками → список; блок вдвое короче */
 @media (max-width:767px){
