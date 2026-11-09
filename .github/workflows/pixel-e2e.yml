@@ -17,6 +17,11 @@ jobs:
         with:
           sparse-checkout: scripts/pixel_e2e.py
           sparse-checkout-cone-mode: false
+      # Python фиксирован: на новейшем Python раннера greenlet (зависимость playwright) собирается из исходников и падает.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      # Браузер не качаем: скрипт берёт Google Chrome, который уже стоит на ubuntu-latest.
       - run: pip install --quiet playwright
       - name: Проверка
         run: xvfb-run -a python3 scripts/pixel_e2e.py
