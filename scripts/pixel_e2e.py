@@ -84,7 +84,7 @@ def journey(browser, lang: str, path: str, tag: str) -> tuple[list[str], list[st
     for block in ("program", "mentor", "start", "faq"):
         page.locator(f"#{block}").scroll_into_view_if_needed()
         page.wait_for_timeout(900)
-    page.locator("#faq details summary").first.click()
+    page.locator("#faq details summary").nth(1).click()  # первый вопрос открыт по умолчанию — открываем второй
     page.wait_for_timeout(700)
     page.locator("[data-file-next]").first.scroll_into_view_if_needed()
     page.locator("[data-file-next]").first.click()
@@ -112,7 +112,8 @@ def journey(browser, lang: str, path: str, tag: str) -> tuple[list[str], list[st
     counts = Counter(rec.goals)
     for goal in GOALS:
         check(counts[goal] == 1, f"цель Метрики {goal} ×{counts[goal]}")
-    check(bot_url.startswith(BOT) and tag in bot_url, f"кнопка открывает бота с меткой: {bot_url[:90]}")
+    # метка для бота урезается по правилу js/attribution.js: источник ≤10, кампания ≤18, объявление ≤20 символов
+    check(bot_url.startswith(BOT + "vm-test-e2e-" + tag[:20]), f"кнопка открывает бота с меткой: {bot_url}")
     return ok, bad
 
 
@@ -132,6 +133,7 @@ def single_button(browser, lang: str, path: str, place: str, tag: str) -> tuple[
         page.wait_for_timeout(600)
     try:
         url = click_cta(ctx, page, btn)
+        page.wait_for_timeout(2000)  # цель Метрики иногда уходит позже события Meta
     except Exception as e:  # noqa: BLE001 — это отчёт
         url = f"не нажалась ({type(e).__name__})"
     ctx.close()
