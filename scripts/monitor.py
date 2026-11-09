@@ -36,7 +36,7 @@ from typing import Callable
 
 DOMAIN = "aibuyurtma.com"
 SITE = f"https://{DOMAIN}/"
-PIXEL_ID = "1825945541747362"
+PIXEL_ID = "948019651369280"
 BOT_USERNAME = "uz_ai_school_bot"
 RDAP_URL = f"https://rdap.verisign.com/com/v1/domain/{DOMAIN}"
 DOH_NS_URL = f"https://dns.google/resolve?name={DOMAIN}&type=NS"
