@@ -24,6 +24,8 @@ PARTS = ROOT / "src" / "parts.json"
 HOOKS_JS = ROOT / "js" / "hooks.js"
 UZ = ROOT / "src" / "i18n" / "uz.json"
 SITE = "https://aibuyurtma.com/"
+# Номер счётчика Яндекс Метрики. Пусто — счётчика на странице нет. Ставит scripts/enable_metrika.py.
+METRIKA_ID = ""
 CYRILLIC = re.compile(r"[А-Яа-яЁё]")
 
 # Та же логика, что pickHook в js/hooks.js; совпадение проверяет tests/hooks.test.mjs.
@@ -43,6 +45,26 @@ SHORT_WORDS = (
 )
 NBSP = " "
 WJ = "⁠"
+
+
+def metrika_head(counter_id: str) -> str:
+    """Код счётчика Метрики для <head>. Под автотестами (navigator.webdriver) не грузится, как и пиксель.
+    window.__YM_ID читает js/main.js, чтобы отправить цель lead."""
+    if not counter_id:
+        return ""
+    if not counter_id.isdigit():
+        raise SystemExit(f"METRIKA_ID должен быть числом, а не {counter_id!r}")
+    return (
+        f'<script id="ya-metrika">/* Яндекс Метрика {counter_id}. Цель lead — нажатие кнопки в бота, js/main.js. */\n'
+        "if (!navigator.webdriver) {\n"
+        f"window.__YM_ID = {counter_id};\n"
+        "(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();"
+        "for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}"
+        "k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})"
+        f"(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id={counter_id}', 'ym');\n"
+        f"ym({counter_id}, 'init', {{ssr:true, webvisor:true, clickmap:true, accurateTrackBounce:true, trackLinks:true}});\n"
+        "}\n</script>"
+    )
 
 
 def read_hooks() -> dict[str, list[str]]:
@@ -155,6 +177,7 @@ def render(lang: str) -> str:
     html = SRC.read_text(encoding="utf-8")
     parts = json.loads(PARTS.read_text(encoding="utf-8"))
     html = html.replace("{{HEAD_HOOK_SCRIPT}}", HEAD_HOOK_SCRIPT)
+    html = html.replace("{{METRIKA}}", metrika_head(METRIKA_ID))
     html = html.replace("{{HOOK_H1S}}", hook_h1s(read_hooks()))
     for key, value in parts.items():
         if not key.startswith("_"):

@@ -1,0 +1,54 @@
+# Мониторинг aibuyurtma.com: каждые 10 минут scripts/monitor.py, при поломке — сообщение в Телеграм.
+# Секреты: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (ставит «Подключить уведомления о сайте.command»).
+# Переменная репозитория METRIKA_ID — номер счётчика Метрики (необязательно, тогда Метрику не проверяем).
+# Ручной запуск с галкой «test» присылает пробное сообщение.
+name: uptime
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+    inputs:
+      test:
+        description: "Прислать пробное сообщение"
+        type: boolean
+        default: true
+
+concurrency:
+  group: uptime
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: scripts/monitor.py
+          sparse-checkout-cone-mode: false
+
+      - name: Последнее состояние
+        uses: actions/cache/restore@v4
+        with:
+          path: .monitor
+          key: monitor-state-${{ github.run_id }}
+          restore-keys: monitor-state-
+
+      - name: Проверка
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          METRIKA_ID: ${{ vars.METRIKA_ID }}
+          MONITOR_STATE: .monitor/state.json
+        run: python3 scripts/monitor.py ${{ inputs.test && '--test' || '' }}
+
+      - name: Сохранить состояние
+        if: always() && !inputs.test
+        uses: actions/cache/save@v4
+        with:
+          path: .monitor
+          key: monitor-state-${{ github.run_id }}

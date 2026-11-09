@@ -58,13 +58,22 @@ window.__AB = { start: payload, hook, bot: Boolean(botUrl) };
 /* ---------- переключатель UZ/RU: метки рекламы и вариант экрана идут с посетителем ---------- */
 if (location.search) $$('.lang-sw a').forEach((a) => { a.href = a.getAttribute('href') + location.search; });
 
-/* ---------- пиксель Meta: Lead — нажатие кнопки в бота, один раз за загрузку страницы ---------- */
-// Базовый код пикселя — в <head>. Группы объявлений в Meta оптимизируются на это событие.
+/* ---------- Яндекс Метрика: счётчик в <head> (scripts/build.py, METRIKA_ID), здесь — параметры визита и цель ---------- */
+function ym(...args) {
+  if (window.__YM_ID && typeof window.ym === 'function') window.ym(window.__YM_ID, ...args);
+}
+ym('params', { lang: doc.lang, hook, start: payload });
+
+/* ---------- заявка: нажатие кнопки в бота, один раз за загрузку страницы ---------- */
+// Пиксель Meta (базовый код в <head>) — событие Lead, на него оптимизируются группы объявлений.
+// Метрика — цель lead (в интерфейсе Метрики: «JavaScript-событие», идентификатор lead).
+// Каждая система шлёт сама: если блокировщик убрал пиксель, цель в Метрике всё равно уйдёт.
 let leadSent = false;
 function sendLead(place) {
-  if (leadSent || typeof window.fbq !== 'function') return;
+  if (leadSent) return;
   leadSent = true;
-  window.fbq('track', 'Lead', { content_name: 'mini_course', content_category: place });
+  if (typeof window.fbq === 'function') window.fbq('track', 'Lead', { content_name: 'mini_course', content_category: place });
+  ym('reachGoal', 'lead', { place, lang: doc.lang });
 }
 
 document.addEventListener('click', (e) => {
