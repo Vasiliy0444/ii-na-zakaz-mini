@@ -33,8 +33,21 @@ if (SHOT) {
 /* ---------- аналитика: события в window.dataLayer ---------- */
 window.dataLayer = window.dataLayer || [];
 const hook = doc.getAttribute('data-hook') || 'default';
+
+// Шаги воронки → цели Метрики («JavaScript-событие», создаёт infra/metrika/ym.py setup). Каждая — один раз за загрузку.
+const YM_GOAL_BY_BLOCK = { program: 'view_program', mentor: 'view_mentor', start: 'view_final' };
+const YM_GOAL_BY_EVENT = { faq_open: 'faq_open', bonus_flip: 'bonus_flip' };
+const goalsSent = new Set();
+function goalOnce(id) {
+  if (goalsSent.has(id)) return;
+  goalsSent.add(id);
+  ym('reachGoal', id, { lang: doc.lang, hook });
+}
+
 function track(event, params = {}) {
   window.dataLayer.push({ event, hook, lang: doc.lang, ...params });
+  const goal = event === 'block_view' ? YM_GOAL_BY_BLOCK[params.id] : YM_GOAL_BY_EVENT[event];
+  if (goal) goalOnce(goal);
 }
 
 /* ---------- метка рекламы → параметр start ссылки на бота (последнее касание) ---------- */
