@@ -25,7 +25,7 @@ HOOKS_JS = ROOT / "js" / "hooks.js"
 UZ = ROOT / "src" / "i18n" / "uz.json"
 SITE = "https://aibuyurtma.com/"
 # Номер счётчика Яндекс Метрики. Пусто — счётчика на странице нет. Ставит scripts/enable_metrika.py.
-METRIKA_ID = ""
+METRIKA_ID = "114152022"
 CYRILLIC = re.compile(r"[А-Яа-яЁё]")
 
 # Та же логика, что pickHook в js/hooks.js; совпадение проверяет tests/hooks.test.mjs.
