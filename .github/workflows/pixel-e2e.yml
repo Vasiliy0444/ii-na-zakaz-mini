@@ -1,0 +1,22 @@
+# Сквозная проверка пикселя Meta и Метрики на живом сайте: настоящий Chrome с окном (xvfb), события уходят реально.
+# Запуск вручную: Actions → pixel-e2e → Run workflow.
+name: pixel-e2e
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: scripts/pixel_e2e.py
+          sparse-checkout-cone-mode: false
+      - run: pip install --quiet playwright==1.48.0
+      - name: Проверка
+        run: xvfb-run -a python3 scripts/pixel_e2e.py
