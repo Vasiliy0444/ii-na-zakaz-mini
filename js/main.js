@@ -1,7 +1,7 @@
 // Лендинг мини-курса «ИИ на заказ» — поведение страницы. Без библиотек.
 // Части взяты из js/main.js страницы курса (коммит 453d85f): события dataLayer, лента со стрелкой, нижняя панель, аккордеон, block_view.
 // Метка для бота — js/attribution.js (из websites/intensiv-site). Заголовок под хук выбирает скрипт в <head>.
-import { buildBotUrl, buildStartPayload, hasUtm, readUtm, resolveUtm } from './attribution.js';
+import { buildBotUrl, buildStartPayload, hasUtm, makeCid, readUtm, resolveUtm } from './attribution.js';
 import { initFiles } from './file.js';
 
 /* ================= НАСТРОЙКИ ================= */
@@ -54,7 +54,10 @@ function track(event, params = {}) {
 const urlUtm = readUtm(location.search);
 if (hasUtm(urlUtm)) store.set(UTM_KEY, urlUtm);
 const utm = resolveUtm(urlUtm, store.get(UTM_KEY));
-const payload = buildStartPayload(LANDING_VERSION, utm);
+// ID клика: уходит в метку бота и на сервер (/c, сервис uz-capi) вместе с метками Meta — так события бота
+// попадают в пиксель 2146866879526627 и засчитываются рекламе (Conversions API, 18.11.2026).
+const cid = makeCid();
+const payload = buildStartPayload(LANDING_VERSION, utm, cid);
 const botUrl = buildBotUrl(BOT_USERNAME, payload);
 $$('a[data-cta]').forEach((a) => {
   a.dataset.start = payload;
@@ -77,6 +80,24 @@ function ym(...args) {
 }
 ym('params', { lang: doc.lang, hook, start: payload });
 
+/* ---------- клик для Conversions API: cid + метки Meta (_fbc/_fbp) → /c ---------- */
+function readCookie(name) {
+  const m = document.cookie.match(new RegExp(`(?:^|; )${name}=([^;]*)`));
+  return m ? decodeURIComponent(m[1]) : '';
+}
+const fbcFromUrl = qs.get('fbclid') ? `fb.1.${Date.now()}.${qs.get('fbclid')}` : '';
+function sendClick() {
+  if (!cid || SHOT || navigator.webdriver) return;
+  const body = JSON.stringify({ cid, fbc: readCookie('_fbc') || fbcFromUrl, fbp: readCookie('_fbp'), url: location.href.slice(0, 1000) });
+  try {
+    if (navigator.sendBeacon && navigator.sendBeacon('/c', body)) return;
+  } catch { /* старый браузер — пробуем fetch */ }
+  try { fetch('/c', { method: 'POST', body, keepalive: true }).catch(() => {}); } catch { /* без клика — событие уйдёт без меток */ }
+}
+// _fbp пиксель ставит не сразу: шлём при загрузке, через 3 с и при нажатии кнопки (сервер дополняет пустые поля).
+sendClick();
+setTimeout(sendClick, 3000);
+
 /* ---------- заявка: нажатие кнопки в бота, один раз за загрузку страницы ---------- */
 // Пиксель Meta (базовый код в <head>) — событие Lead, на него оптимизируются группы объявлений.
 // Метрика — цель lead (в интерфейсе Метрики: «JavaScript-событие», идентификатор lead).
@@ -93,7 +114,10 @@ document.addEventListener('click', (e) => {
   const a = e.target.closest('[data-track]');
   if (a) track('cta_click', { place: a.getAttribute('data-place') || '', start: payload });
   const cta = e.target.closest('a[data-cta]');
-  if (cta) sendLead(cta.getAttribute('data-place') || '');
+  if (cta) {
+    sendLead(cta.getAttribute('data-place') || '');
+    sendClick();
+  }
 });
 
 /* ---------- горизонтальная лента со стрелкой (телефон) ---------- */

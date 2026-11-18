@@ -21,7 +21,7 @@
 <link rel="preload" href="../assets/img/bg_hero_d.webp" as="image" media="(min-width: 768px)">
 <script id="hook-head">/* до отрисовки: какой заголовок показать по метке utm_content (логика = pickHook из js/hooks.js) */
 (function(){try{var w=(new URLSearchParams(location.search).get('utm_content')||'').toLowerCase().split(/[^a-z0-9]+/).filter(Boolean),k=null,i=w.indexOf('math');if(i!==-1){k=w[i+1]==='a'?'math_a':'math_b';}else{var keys=['compare','clients','zero','home','now'];for(var j=0;j<keys.length;j++){if(w.indexOf(keys[j])!==-1){k=keys[j];break;}}}if(k){document.documentElement.setAttribute('data-hook',k);}var h=(new URLSearchParams(location.search).get('hero')||'').toLowerCase();if(h==='b'||h==='c'){document.documentElement.setAttribute('data-hero',h);}}catch(e){}})();</script>
-<script id="meta-pixel">/* Пиксель Meta: 948019651369280 с 09.11.2026 (прежний 1825945541747362 больше не используется). Lead — нажатие кнопки в бота, js/main.js.
+<script id="meta-pixel">/* Пиксели Meta: 948019651369280 с 09.11.2026 и 2146866879526627 с 18.11.2026 (прежний 1825945541747362 больше не используется). Lead — нажатие кнопки в бота, js/main.js.
    Под автотестами (navigator.webdriver) пиксель не грузим, чтобы проверки не слали события в Meta. */
 if (!navigator.webdriver) {
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -30,6 +30,7 @@ n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '948019651369280');
+fbq('init', '2146866879526627'); /* «УЗ школа CAPI» с 18.11.2026: сюда же сервер uz-capi шлёт события бота */
 fbq('track', 'PageView');
 }
 </script>
@@ -43,7 +44,7 @@ ym(114152022, 'init', {ssr:true, webvisor:true, clickmap:true, accurateTrackBoun
 <link rel="stylesheet" href="../css/fonts.css?v=35aa182b">
 <link rel="stylesheet" href="../css/style.css?v=73daaa35">
 <link rel="stylesheet" href="../css/mini.css?v=8dbf0469">
-<script type="module" src="../js/main.js?v=708cf2eb"></script>
+<script type="module" src="../js/main.js?v=dc8c441c"></script>
 </head>
 <body>
 <div class="page" id="page">

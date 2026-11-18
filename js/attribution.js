@@ -9,6 +9,9 @@ export const MAX_START_LENGTH = 64;
 const PART_LIMITS = { source: 10, campaign: 18, content: 20 };
 const VERSION_RE = /^[a-z]$/;
 const BOT_USERNAME_RE = /^[A-Za-z][A-Za-z0-9_]{3,31}$/;
+// ID клика для Meta Conversions API (сервис uz-capi на сервере, 18.11.2026): 10 знаков a–z0–9.
+export const CID_RE = /^[a-z0-9]{10}$/;
+const V1_LIMITS = { source: 10, campaign: 20, content: 12 };
 
 /**
  * Приводит часть метки к символам, допустимым в Telegram start, и обрезает до limit.
@@ -55,7 +58,8 @@ export function hasUtm(utm) {
  * @param {Utm} utm
  * @returns {string} не длиннее 64 символов, только A–Z a–z 0–9 _ -
  */
-export function buildStartPayload(version, utm) {
+export function buildStartPayload(version, utm, cid = '') {
+  if (CID_RE.test(cid)) return buildStartPayloadV1(version, utm, cid);
   const v = VERSION_RE.test(version) ? version : 'x';
   const parts = hasUtm(utm)
     ? [
@@ -65,6 +69,59 @@ export function buildStartPayload(version, utm) {
       ]
     : ['direct'];
   return [`v${v}`, ...parts].join('-').slice(0, MAX_START_LENGTH);
+}
+
+/**
+ * Часть метки v1: внутри части только a–z, 0–9 и дефис — подчёркивание у бота разделяет поля.
+ * @param {unknown} value
+ * @param {number} limit
+ * @returns {string}
+ */
+export function sanitizeV1Part(value, limit) {
+  const cleaned = String(value ?? '')
+    .toLowerCase()
+    .replace(/[^a-z0-9-]+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  return cleaned.slice(0, limit).replace(/-+$/g, '');
+}
+
+/**
+ * Метка в формате бота v1: v1_{источник}_v{версия}_{кампания}_{объявление}_k{cid}.
+ * Бот (parseStartPayload) раскладывает её по utm_source / medium / campaign / content / term,
+ * сервис uz-capi достаёт cid из хвоста и связывает человека с кликом по рекламе.
+ * @param {string} version
+ * @param {Utm} utm
+ * @param {string} cid
+ * @returns {string}
+ */
+export function buildStartPayloadV1(version, utm, cid) {
+  const v = VERSION_RE.test(version) ? version : 'x';
+  const has = hasUtm(utm);
+  const parts = [
+    'v1',
+    has ? sanitizeV1Part(utm.source, V1_LIMITS.source) || 'na' : 'direct',
+    `v${v}`,
+    has ? sanitizeV1Part(utm.campaign, V1_LIMITS.campaign) || 'na' : 'na',
+    has ? sanitizeV1Part(utm.content, V1_LIMITS.content) || 'na' : 'na',
+    `k${cid}`,
+  ];
+  return parts.join('_').slice(0, MAX_START_LENGTH);
+}
+
+/**
+ * Случайный ID клика: 10 знаков a–z0–9. Без crypto — пустая строка (метка останется старого формата).
+ * @returns {string}
+ */
+export function makeCid() {
+  try {
+    const abc = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    const bytes = new Uint8Array(10);
+    globalThis.crypto.getRandomValues(bytes);
+    return Array.from(bytes, (b) => abc[b % 36]).join('');
+  } catch {
+    return '';
+  }
 }
 
 /**

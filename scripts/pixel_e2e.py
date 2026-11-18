@@ -15,6 +15,7 @@ Start в боте не нажимает — только открывает сс
 from __future__ import annotations
 
 import sys
+import re
 import time
 from collections import Counter
 from urllib.parse import parse_qs, unquote, urlparse
@@ -23,6 +24,7 @@ from playwright.sync_api import sync_playwright
 
 SITE = "https://aibuyurtma.com/"
 PIXEL_ID = "948019651369280"
+PIXEL_IDS = ("948019651369280", "2146866879526627")  # старый + «УЗ школа CAPI» с 18.11.2026
 METRIKA_ID = "114152022"
 BOT = "https://t.me/uz_ai_school_bot?start="
 GOALS = ["view_program", "view_mentor", "view_final", "faq_open", "bonus_flip", "lead"]
@@ -102,9 +104,12 @@ def journey(browser, lang: str, path: str, tag: str) -> tuple[list[str], list[st
 
     pv = rec.events("PageView")
     leads = rec.events("Lead")
-    check(len(pv) == 1 and pv[0][1] == PIXEL_ID, f"Meta PageView ×{len(pv)} → пиксель {pv[0][1] if pv else '—'}")
-    check(len(leads) == 1 and leads[0][1] == PIXEL_ID and leads[0][2] == "hero",
-          f"Meta Lead ×{len(leads)} после двух нажатий (место {leads[0][2] if leads else '—'})")
+    for pid in PIXEL_IDS:
+        pv_p = [e for e in pv if e[1] == pid]
+        leads_p = [e for e in leads if e[1] == pid]
+        check(len(pv_p) == 1, f"Meta PageView ×{len(pv_p)} → пиксель {pid}")
+        check(len(leads_p) == 1 and leads_p[0][2] == "hero",
+              f"Meta Lead ×{len(leads_p)} → пиксель {pid} после двух нажатий (место {leads_p[0][2] if leads_p else '—'})")
     check(bool(rec.meta_status) and all(s in (200, 302) for s in rec.meta_status),
           f"Meta отвечает: {dict(Counter(rec.meta_status))}")
     check(rec.metrika_hits > 0 and all(s in (200, 302) for s in rec.metrika_status),
@@ -112,8 +117,10 @@ def journey(browser, lang: str, path: str, tag: str) -> tuple[list[str], list[st
     counts = Counter(rec.goals)
     for goal in GOALS:
         check(counts[goal] == 1, f"цель Метрики {goal} ×{counts[goal]}")
-    # метка для бота урезается по правилу js/attribution.js: источник ≤10, кампания ≤18, объявление ≤20 символов
-    check(bot_url.startswith(BOT + "vm-test-e2e-" + tag[:20]), f"кнопка открывает бота с меткой: {bot_url}")
+    # метка v1 (js/attribution.js, 18.11.2026): v1_источник_vm_кампания_объявление(≤12, дефисы)_k<cid>
+    content = re.sub(r"-+", "-", re.sub(r"[^a-z0-9-]+", "-", tag.lower())).strip("-")[:12].rstrip("-")
+    check(re.match(re.escape(BOT + "v1_test_vm_e2e_" + content + "_k") + r"[a-z0-9]{10}$", bot_url) is not None,
+          f"кнопка открывает бота с меткой: {bot_url}")
     return ok, bad
 
 
