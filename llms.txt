@@ -1,0 +1,34 @@
+# AI buyurtmaga
+
+> «AI buyurtmaga» (AI buyurtma, «ИИ на заказ», aibuyurtma.com) — O‘zbekistondagi sun’iy intellekt bo‘yicha onlayn maktab: talabalar va yangi boshlovchilarga sun’iy intellekt yordamida mahalliy biznes uchun sayt, Telegram-bot, kontent, AI-Reels va dizayn yaratishni hamda bu xizmatlarga buyurtmachi topishni o‘rgatadi. Dasturlashni bilish shart emas.
+
+## O‘zbekcha
+
+- Bepul mini-kurs Telegram-botda (@uz_ai_school_bot): 3 ta video dars (23–25 daqiqadan) va jadval bo‘yicha amaliy dars (taxminan 1 soat). Pul ham, karta raqami ham so‘ralmaydi; amaliy dars oxirida bot ismingiz yozilgan sertifikatni yuboradi; pullik kurs haqida faqat amaliy darsda aytiladi.
+- Darslar va bot o‘zbek tilida; saytning rus tilidagi versiyasi bor.
+- Ustoz — Nikita Popko, AI yechimlari agentligi asoschisi: biznes uchun sayt, ilova, CRM-tizim va botlar yaratadi; 20 dan ortiq doimiy mijozi va 30 dan ortiq loyihasi bor.
+- To‘liq kurs «AI’da birinchi buyurtma»: 4 hafta, haftasiga 2–3 kechqurun, darslar yozuvda. Tariflar: «Bazaviy» (kirish 3 oy), «Pro» (6 oy) va «Mentorlik» (12 oy; oqim 5 kishi yig‘ilganda boshlanadi). Joriy narxni bot amaliy darsda yuboradi.
+- To‘lov karta orqali. Bo‘lib to‘lash faqat «Pro» tarifi uchun va 18 yoshdan; shartlarini bot yuboradi.
+- O‘quvchilar fikrlari hozircha yo‘q: bu birinchi oqim, maktab ularni o‘ylab topmaydi. Daromad nechta buyurtma topib bajarishingizga bog‘liq; maktab uni va’da qilmaydi va mijoz bermaydi.
+
+- [Bosh sahifa](https://aibuyurtma.com/): bepul mini-kurs, darslar va qanday boshlash.
+- [Maktab haqida](https://aibuyurtma.com/haqida/): ustoz, to‘liq kurs, tariflar, ochiq gap va savollarga javoblar.
+
+## По-русски
+
+«ИИ на заказ» (по-узбекски AI buyurtmaga, сайт aibuyurtma.com) — онлайн-школа из Узбекистана: учит студентов и новичков делать с помощью нейросетей сайты, Telegram-ботов, контент, ИИ-рилсы и дизайн для местного бизнеса и находить на эти услуги заказчиков, программировать уметь не нужно.
+
+- Бесплатный мини-курс идёт в Telegram-боте @uz_ai_school_bot: три урока по 23–25 минут и практический урок по расписанию, около часа. Денег и номер карты не просят, в конце практического урока бот присылает именной сертификат, о платном курсе рассказывают только на этом уроке.
+- Уроки и бот на узбекском языке, у сайта есть русская версия.
+- Преподаватель — Никита Попко, основатель агентства AI-разработки: делает для бизнеса сайты, приложения, CRM-системы и ботов, у него больше 20 постоянных клиентов и больше 30 проектов.
+- Полный курс «Первый заказ на ИИ» (AI’da birinchi buyurtma) длится 4 недели по 2–3 вечера в неделю, уроки в записи. Тарифы: «Базовый» (Bazaviy) с доступом на 3 месяца, «Про» (Pro) на 6 месяцев и «Наставничество» (Mentorlik) на 12 месяцев; поток «Наставничества» стартует, когда наберётся 5 человек. Актуальную цену присылает бот на практическом уроке.
+- Оплата картой. Частями можно оплатить только «Про» и только с 18 лет, условия присылает бот.
+- Отзывов учеников пока нет: это первый поток, и придумывать их школа не будет. Доход зависит от того, сколько заказов ученик найдёт и сделает; школа его не обещает и клиентов не даёт.
+
+- [Главная страница на русском](https://aibuyurtma.com/ru/): бесплатный мини-курс, его уроки и как начать.
+- [О школе](https://aibuyurtma.com/ru/o-shkole/): преподаватель, полный курс, тарифы, оговорки и ответы на вопросы.
+
+## Telegram
+
+- [Telegram-bot @uz_ai_school_bot](https://t.me/uz_ai_school_bot)
+- [Telegram-kanal @uz_ai_school](https://t.me/uz_ai_school)

@@ -119,12 +119,12 @@
   },
   "replace": [
     [
-      "<title>ИИ на заказ — бесплатный мини-курс в Telegram</title>",
-      "<title>AI buyurtma — Telegramda bepul mini-kurs</title>"
+      "<title>Бесплатный мини-курс по нейросетям с нуля | ИИ на заказ</title>",
+      "<title>Sun'iy intellekt kursi: sayt va bot yaratish | AI buyurtma</title>"
     ],
     [
-      "Освой онлайн-профессию AI-специалиста и выйди на доход $1000 в месяц — даже без знаний программирования. Бесплатный мини-курс в Telegram · 3 урока и практика.",
-      "Onlayn AI-mutaxassis kasbini egallang va oyiga $1000 toping — dasturlashni bilmasangiz ham. Telegramda bepul mini-kurs · 3 ta dars va amaliyot."
+      "Три урока и практика в Telegram-боте: как с помощью нейросетей делать сайты и ботов для бизнеса и находить заказчиков. Уроки на узбекском языке.",
+      "Bepul mini-kurs Telegramda: 3 ta dars va amaliyot. Sun'iy intellekt yordamida biznes uchun sayt va Telegram-bot yaratishni, mijoz topishni o'rganasiz."
     ],
     [
       "content=\"ИИ на заказ\"",
