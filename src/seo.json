@@ -1,0 +1,54 @@
+{
+  "_about": "Тексты разметки JSON-LD для index.html (uz) и ru/index.html (ru); собирает scripts/build.py (seo_head). Цен платных тарифов здесь нет — решение Никиты 20.11.2026. Узбекский — на вычитку Асилбеку; русский — дословно от na-pero 20.11.2026. Обещаний дохода и стоп-слов Meta (kafolat, tez boyish, oson pul, passiv daromad) быть не должно: сборка проверяет.",
+  "org_name": "AI buyurtmaga",
+  "org_alt": [
+    "AI buyurtma",
+    "ИИ на заказ"
+  ],
+  "site_name": "AI buyurtma",
+  "site_alt": [
+    "AI buyurtmaga",
+    "ИИ на заказ",
+    "aibuyurtma.com"
+  ],
+  "faq_skip": {
+    "1": "в вопросе и ответе $1000: в разметку обещание суммы не берём",
+    "8": "в узбекском ответе «kafolatlamaymiz» (стоп-слово Meta); убираем в обоих языках, чтобы списки совпадали"
+  },
+  "uz": {
+    "country": "O‘zbekiston",
+    "org_description": "O‘zbekistondagi sun’iy intellekt bo‘yicha onlayn maktab. Sun’iy intellekt yordamida mahalliy biznes uchun sayt, Telegram-bot, kontent, AI-Reels va dizayn yaratishni hamda bu xizmatlarga buyurtmachi topishni o‘rgatadi. Bepul mini-kurs Telegram-botda, o‘zbek tilida o‘tadi.",
+    "nikita_name": "Nikita Popko",
+    "nikita_job": "AI yechimlari agentligi asoschisi",
+    "nikita_description": "AI yechimlari agentligi asoschisi. 20 dan ortiq doimiy mijozi va 30 dan ortiq loyihasi bor: AI-ilovalar, saytlar, platformalar, CRM-tizimlar va botlar. Kursda o‘z ishida qo‘llaydigan usullarni ko‘rsatadi.",
+    "course_name": "«AI buyurtmaga» bepul amaliy mini-kursi",
+    "course_description": "Telegram-botdagi bepul mini-kurs: 3 ta video dars (23–25 daqiqadan) va jadval bo‘yicha amaliy dars (taxminan 1 soat). AI-mutaxassis kasbi, biznes pul to‘laydigan 5 ta xizmat (sayt, Telegram-bot, kontent, AI-Reels, dizayn), Toshkentdagi narxlar va ilk mijozlarni qayerdan topish haqida. Amaliy darsda saytsiz kichik kompaniyani topib, egasiga sayt namunasini tayyorlaysiz. Dasturlashni bilish shart emas.",
+    "level": "Boshlang‘ich",
+    "teaches": [
+      "Sayt yaratish",
+      "Telegram-bot yaratish",
+      "Kontent",
+      "AI-Reels",
+      "Dizayn",
+      "Ilk mijozlarni topish"
+    ]
+  },
+  "ru": {
+    "country": "Узбекистан",
+    "org_description": "«ИИ на заказ» (по-узбекски AI buyurtmaga, сайт aibuyurtma.com) — онлайн-школа из Узбекистана с уроками на узбекском языке. Школа учит студентов и новичков делать с помощью нейросетей сайты, Telegram-ботов, контент, ИИ-рилсы и дизайн для местного бизнеса и находить на эти услуги заказчиков. Программировать для этого уметь не нужно: код пишет нейросеть.",
+    "nikita_name": "Никита Попко",
+    "nikita_job": "Основатель агентства AI-разработки",
+    "nikita_description": "Никита Попко — основатель агентства AI-разработки и преподаватель школы «ИИ на заказ»: делает для бизнеса сайты, приложения, CRM-системы и ботов, у него больше 20 постоянных клиентов и больше 30 проектов. Он работал с крупными компаниями и предпринимателями Узбекистана и с крупными IT-компаниями России.",
+    "course_name": "Бесплатный мини-курс школы «ИИ на заказ»",
+    "course_description": "Бесплатный мини-курс школы «ИИ на заказ» идёт на узбекском языке в Telegram-боте @uz_ai_school_bot: три урока по 23–25 минут и практический урок по расписанию, около часа. В уроках разбирают профессию AI-специалиста, пять его услуг (сайты, Telegram-боты, контент, ИИ-рилсы и дизайн), цены на них в Ташкенте и поиск первых заказчиков. На практическом уроке ученик находит небольшую компанию без сайта, пишет владельцу и готовит для него пример сайта.",
+    "level": "Для новичков",
+    "teaches": [
+      "Сайты",
+      "Telegram-боты",
+      "Контент",
+      "ИИ-рилсы",
+      "Дизайн",
+      "Поиск первых заказчиков"
+    ]
+  }
+}

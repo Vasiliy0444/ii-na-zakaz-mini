@@ -1,7 +1,19 @@
 # ИИ на заказ — лендинг бесплатного мини-курса
 
-Страница: https://aibuyurtma.com/ (домен у Hostinger, файлы на GitHub Pages; старый адрес vasiliy0444.github.io/ii-na-zakaz-mini перекидывает сюда) (закрыта от поисковиков — `noindex`).
+Страница: https://aibuyurtma.com/ (домен у Hostinger, файлы на GitHub Pages; старый адрес vasiliy0444.github.io/ii-na-zakaz-mini перекидывает сюда) (с 20.11.2026 открыта поисковикам — раздел «SEO и GEO» ниже).
 Дизайн-система — страница курса «ИИ на заказ», откуда что взято — `SOURCE.md`.
+
+## SEO и GEO (20.11.2026)
+
+Сайт открыт поисковикам (Google, Яндекс) и ИИ-поиску (ChatGPT, Gemini, Perplexity). Решение Никиты 20.11.2026: снять `noindex`, цен платных тарифов на сайт не писать, рассрочку упоминать только у «Pro». Разбор спроса и аудит — в папке проекта `Узбекистан маркетинг/сайт-SEO/`.
+
+- **Главные страницы.** В `src/index.src.html` стоит `<meta name="robots" content="index, follow, max-image-preview:large">` и метка `<!--SEO_HEAD-->`. На её место `scripts/build.py` ставит canonical, hreflang uz/ru/x-default, `og:locale` и одну разметку JSON-LD: школа (EducationalOrganization), Никита (Person), сайт, страница, бесплатный мини-курс (Course, Offer 0 сум) и вопросы из блока «Частые вопросы» (FAQPage). Тексты разметки — `src/seo.json`; вопросы берутся со страницы, поэтому разметка совпадает с видимым текстом. Вопросы 1 и 8 в разметку не идут (сумма $1000 и «kafolat»).
+- **Проверка в сборке.** Если в разметку попала сумма «$1000» или стоп-слово Meta (kafolat, tez boyish, oson pul, passiv daromad), `build.py` падает.
+- **Title и description.** Русские — в `src/index.src.html`, узбекские — парой в `src/i18n/uz.json` (`replace`). Русский текст написан через na-pero, узбекский — Claude, на вычитку Асилбеку. Узбекский заголовок построен на запросах «sun'iy intellekt kursi» и «sayt yaratish»: «AI kursi» Google путает с «Ayatul Kursi».
+- **Страница «О школе».** `haqida/index.html` (uz) и `ru/o-shkole/index.html` (ru) — для поиска и ИИ-поисковиков: кто такой Никита, что даёт мини-курс, полный курс, тарифы без цен, честные оговорки, вопросы с разметкой FAQPage. Пишутся руками, не через `build.py`. Пикселя Meta там нет, Метрика 114152022 есть. Кнопка ведёт в бота с меткой `v1_seo_org_haqida_na` / `v1_seo_org_o-shkole_na` — в статистике бота это источник `seo`. Картинка превью — `assets/og-haqida.jpg` (без текста, кроме названия).
+- **Файлы в корне.** `robots.txt` (всё открыто, кроме `/c`; для Яндекса `Clean-param` по меткам рекламы), `sitemap.xml` (4 страницы с hreflang), `llms.txt` (справка о школе для ИИ-поисковиков, uz и ru), `favicon.ico` и `assets/favicon-96.png` (Google берёт иконку кратную 48 px).
+- **Выкладка на сервер.** Скрипт `/usr/local/bin/aibuyurtma-deploy` на 2.29.183.26 с 20.11.2026 копирует ещё `robots.txt`, `sitemap.xml`, `llms.txt`, `favicon.ico` и папку `haqida/`; `ru/o-shkole/` едет вместе с `ru/`. Файлы подтверждения Google и Яндекса (`google*.html`, `yandex_*.html`) лежат только на сервере: скрипт их не трогает.
+- **Что не делать.** Не возвращать `noindex`. Не писать в title, description и разметку суммы дохода. Поменял факты о школе (тарифы, сроки, уроки) — поправить `haqida/`, `ru/o-shkole/`, `llms.txt` и `src/seo.json`, обновить `lastmod` в `sitemap.xml`.
 
 ## Языки
 

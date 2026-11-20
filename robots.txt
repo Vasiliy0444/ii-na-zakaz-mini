@@ -1,0 +1,10 @@
+# aibuyurtma.com: open to search engines and AI search since 2026-11-20.
+User-agent: *
+Allow: /
+# /c is the click beacon for Conversions API (POST only), not a page.
+Disallow: /c$
+
+# Yandex: ad tracking parameters do not create duplicate pages.
+Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&fbclid&yclid&gclid&hero&shot /
+
+Sitemap: https://aibuyurtma.com/sitemap.xml

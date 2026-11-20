@@ -8,12 +8,16 @@
 2. Делает 7 заголовков под хуки из js/hooks.js (один источник текста) и скрипт в <head>, который выбирает хук до отрисовки.
 3. Типографика в тексте: неразрывные пробелы после коротких слов и перед тире, склеенные диапазоны «2–3».
 4. Добавляет к css/js метку версии ?v=<хеш>, чтобы GitHub Pages не отдавал старые файлы из кэша.
+5. SEO (20.11.2026, страница открыта поисковикам): на место <!--SEO_HEAD--> ставит canonical, hreflang uz/ru,
+   og:locale и разметку JSON-LD (школа, Никита, сайт, страница, бесплатный мини-курс, вопросы из блока FAQ).
+   Тексты разметки — src/seo.json. Цен платных тарифов в разметке нет (решение Никиты 20.11.2026).
 
 Запуск из корня репозитория: python3 scripts/build.py
 """
 from __future__ import annotations
 
 import hashlib
+import html as html_lib
 import json
 import re
 from pathlib import Path
@@ -27,6 +31,18 @@ SITE = "https://aibuyurtma.com/"
 # Номер счётчика Яндекс Метрики. Пусто — счётчика на странице нет. Ставит scripts/enable_metrika.py.
 METRIKA_ID = "114152022"
 CYRILLIC = re.compile(r"[А-Яа-яЁё]")
+SEO = ROOT / "src" / "seo.json"
+SEO_MARK = "<!--SEO_HEAD-->"
+PAGE_URL = {"uz": SITE, "ru": SITE + "ru/"}
+ABOUT_URL = {"uz": SITE + "haqida/", "ru": SITE + "ru/o-shkole/"}
+OG_LOCALE = {"uz": "uz_UZ", "ru": "ru_RU"}
+BOT_URL = "https://t.me/uz_ai_school_bot"
+CHANNEL_URL = "https://t.me/uz_ai_school"
+# Уроки и бот мини-курса — на узбекском (русские подписи только для согласования), поэтому Course.inLanguage = uz на обеих версиях.
+# Длительность мини-курса для разметки Course: уроки 1–3 (22,8 + 25,4 + 23,7 мин) и практика (71,2 мин) — замер 20.11.2026.
+COURSE_WORKLOAD = "PT2H23M"
+# В разметке не должно быть обещания суммы и стоп-слов рекламы Meta: сборка падает, если они туда попали.
+SEO_STOP = re.compile(r"\$\s?1[\s,.]?000|kafolat|tez boyish|oson pul|passiv daromad|пассивн\w* доход", re.I)
 
 # Та же логика, что pickHook в js/hooks.js; совпадение проверяет tests/hooks.test.mjs.
 HEAD_HOOK_SCRIPT = (
@@ -159,6 +175,78 @@ def translate(html: str, uz: dict) -> str:
     return html
 
 
+def plain(fragment: str) -> str:
+    """Текст для JSON-LD: без тегов, неразрывных пробелов и склеек типографики."""
+    text = html_lib.unescape(re.sub(r"<[^>]+>", "", fragment))
+    text = text.replace("\u2060", "").replace("\u00a0", " ").replace("\u2011", "-")
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def page_faq(html: str, skip: dict) -> list[dict]:
+    """Вопросы и ответы из блока «Частые вопросы» той же страницы — разметка совпадает с видимым текстом."""
+    qs = dict(re.findall(r'<span class="qa-q" data-i18n="b4\.q(\d+)">(.*?)</span>', html, flags=re.S))
+    ans = dict(re.findall(r'<p class="qa-a" data-i18n="b4\.a(\d+)">(.*?)</p>', html, flags=re.S))
+    if not qs or qs.keys() != ans.keys():
+        raise SystemExit(f"FAQ для разметки: вопросы {sorted(qs)} не совпадают с ответами {sorted(ans)}")
+    out = []
+    for n in sorted(qs, key=int):
+        if n in skip:
+            continue
+        out.append({"@type": "Question", "name": plain(qs[n]),
+                    "acceptedAnswer": {"@type": "Answer", "text": plain(ans[n])}})
+    return out
+
+
+def jsonld(lang: str, html: str, seo: dict) -> dict:
+    t, url = seo[lang], PAGE_URL[lang]
+    org, person, site = SITE + "#org", SITE + "#nikita", SITE + "#website"
+    title = plain(re.search(r"<title>(.*?)</title>", html, flags=re.S).group(1))
+    desc = re.search(r'<meta name="description" content="([^"]*)">', html).group(1)
+    graph = [
+        {"@type": "EducationalOrganization", "@id": org, "name": seo["org_name"], "alternateName": seo["org_alt"],
+         "url": SITE, "logo": {"@type": "ImageObject", "url": SITE + "assets/apple-touch-icon.png", "width": 180, "height": 180},
+         "description": t["org_description"], "founder": {"@id": person},
+         "areaServed": {"@type": "Country", "name": t["country"]}, "knowsLanguage": ["uz", "ru"],
+         "sameAs": [CHANNEL_URL]},
+        {"@type": "Person", "@id": person, "name": t["nikita_name"], "jobTitle": t["nikita_job"],
+         "description": t["nikita_description"], "image": SITE + "assets/img/nikita_neon_mic.webp",
+         "worksFor": {"@id": org}},
+        {"@type": "WebSite", "@id": site, "url": SITE, "name": seo["site_name"], "alternateName": seo["site_alt"],
+         "inLanguage": ["uz", "ru"], "publisher": {"@id": org}},
+        {"@type": "WebPage", "@id": url + "#webpage", "url": url, "name": title, "description": plain(desc),
+         "inLanguage": lang, "isPartOf": {"@id": site}, "about": {"@id": org}, "mainEntity": {"@id": url + "#course"},
+         "relatedLink": [ABOUT_URL[lang]],
+         "primaryImageOfPage": {"@type": "ImageObject", "url": SITE + "assets/og.jpg", "width": 1200, "height": 630}},
+        {"@type": "Course", "@id": url + "#course", "name": t["course_name"], "description": t["course_description"],
+         "provider": {"@id": org}, "inLanguage": "uz", "isAccessibleForFree": True, "educationalLevel": t["level"],
+         "teaches": t["teaches"],
+         "offers": {"@type": "Offer", "category": "Free", "price": 0, "priceCurrency": "UZS",
+                    "availability": "https://schema.org/InStock", "url": BOT_URL},
+         "hasCourseInstance": {"@type": "CourseInstance", "courseMode": "Online", "courseWorkload": COURSE_WORKLOAD,
+                               "location": {"@type": "VirtualLocation", "url": BOT_URL}, "instructor": {"@id": person}}},
+        {"@type": "FAQPage", "@id": url + "#faq", "isPartOf": {"@id": url + "#webpage"},
+         "mainEntity": page_faq(html, seo["faq_skip"])},
+    ]
+    return {"@context": "https://schema.org", "@graph": graph}
+
+
+def seo_head(lang: str, html: str) -> str:
+    seo = json.loads(SEO.read_text(encoding="utf-8"))
+    other = "ru" if lang == "uz" else "uz"
+    rows = [f'<link rel="canonical" href="{PAGE_URL[lang]}">']
+    rows += [f'<link rel="alternate" hreflang="{code}" href="{href}">' for code, href in PAGE_URL.items()]
+    rows += [f'<link rel="alternate" hreflang="x-default" href="{SITE}">',
+             f'<meta property="og:locale" content="{OG_LOCALE[lang]}">',
+             f'<meta property="og:locale:alternate" content="{OG_LOCALE[other]}">']
+    data = json.dumps(jsonld(lang, html, seo), ensure_ascii=False, separators=(",", ":"))
+    hit = SEO_STOP.search(data)
+    if hit:
+        raise SystemExit(f"в разметке JSON-LD ({lang}) обещание суммы или стоп-слово Meta: {hit.group(0)!r}")
+    safe = data.replace("</", "<\\/")  # «</script>» внутри строки не закроет тег раньше времени
+    rows.append(f'<script type="application/ld+json">{safe}</script>')
+    return "\n".join(rows)
+
+
 def lang_switch(lang: str) -> str:
     uz_href, ru_href = ("./", "ru/") if lang == "uz" else ("../", "./")
     cur = {"uz": ' aria-current="page"', "ru": ""} if lang == "uz" else {"uz": "", "ru": ' aria-current="page"'}
@@ -189,7 +277,10 @@ def render(lang: str) -> str:
     if lang == "uz":
         html = translate(html, json.loads(UZ.read_text(encoding="utf-8")))
     html = bust(apply_typography(html, lang))
-    return to_subdir(html) if lang == "ru" else html
+    html = to_subdir(html) if lang == "ru" else html
+    if html.count(SEO_MARK) != 1:
+        raise SystemExit(f"в src/index.src.html должна быть одна метка {SEO_MARK}")
+    return html.replace(SEO_MARK, seo_head(lang, html))
 
 
 def main() -> None:
